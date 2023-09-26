@@ -1,15 +1,20 @@
 import React, { useState } from 'react'; // Import React and useState
 import Header from "./components/header";
 import Footer from "./components/footer";
-import Cardcomponent from "./components/card";
-import Cartcomponent from "./components/cart";
+import Carddata from "./components/carddata";
 import './App.css';
+import Addtocart from './components/addtocart';
+import Showcart from './components/showcart';
+import Cardcomponent from './components/card';
+import Addbookform from './components/addbook';
+import AddBookPage from './components/addbookpage';
 const buttonContainerStyles = {
   display: "flex",
   justifyContent: "center",
   marginTop: "20px",
   backgroundColor: "#996633"
 };
+console.log("carddata", Carddata)
 
 const buttonStyles = {
   margin: "0 10px",
@@ -19,127 +24,64 @@ const buttonStyles = {
   border: "none",
   cursor: "pointer",
 };
-const cartStyles = {
-  position: "fixed",
-  top: "0",
-  right: "0",
-  padding: "10px",
-  backgroundColor: "#dfbf9f",
-  boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
-  zIndex: "999",
-};
 
-const cardData = [
-  {
-    "title": "The Great People",
-    "author": "F. Scottish Fitzgerald",
-    "price": 15.99,
-    "stock": 100,
-    "genre": [
-      "Classic",
-      "Fiction"
-    ],
-    "description": "The Great People is a classic novel...",
-    "image": ["https://t4.ftcdn.net/jpg/06/31/04/41/240_F_631044166_40R1jKWGkfErlZ2hX4j1aClwPwuofkjN.jpg", "https://th.bing.com/th/id/R.1747d38a485c5e4926084dc01adc4fb1?rik=DakEJQsYmlzqlg&pid=ImgRaw&r=0", "https://th.bing.com/th/id/R.90315c4d3b1885293aab3b70cf92994a?rik=DKZ7Tcy4cc6RfQ&riu=http%3a%2f%2fwww.wingandko.com%2fpicture%2fgreat_people_96.jpg%3fpictureId%3d1657918%26asGalleryImage%3dtrue&ehk=GkY1QryX%2bXteY2zaEtsltKsZz0KD7YqgH2yavb%2bO9RE%3d&risl=&pid=ImgRaw&r=0"]
-  },
-  {
-    "title": "To Kill a Mockingbird",
-    "author": "Harper Lee",
-    "price": 10.99,
-    "stock": 30,
-    "genre": [
-      "Classic",
-      "Fiction"
-    ],
-    "description": "To Kill a Mockingbird is a classic novel...",
-    "image": ["https://th.bing.com/th/id/R.6314b8fa5ded68f14ed604931d731632?rik=aioGVs1skhCpOg&riu=http%3a%2f%2f4.bp.blogspot.com%2f-QcGqcH2lQyU%2fT8v0GtC2lSI%2fAAAAAAAABmc%2fjqH81yptXzs%2fs1600%2f9780142417751B.jpg&ehk=cHsB8ESxHhXKcsXGvqgbZz7PzX%2bSs%2fGl0VGb0JrSeq0%3d&risl=&pid=ImgRaw&r=0", "https://th.bing.com/th/id/OIP.8aK7lEx70a-l2PAysUN8twHaKj?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.jvYLjJvwkKBnI2svjjyKigHaLI?pid=ImgDet&rs=1"]
-  },
-  {
-    "title": "Pride and Prejudice",
-    "author": "Jane Austen",
-    "price": 11.99,
-    "stock": 40,
-    "genre": [
-      "Romance",
-      "Classic",
-      "Fiction"
-    ],
-    "description": "Pride and Prejudice is a classic romance novel...",
-    "image": ["https://i.thenile.io/r1000/9781782122760.jpg?r=5d6af8a52f974", "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781499806250/pride-and-prejudice-9781499806250_hr.jpg", "https://i.pinimg.com/236x/a9/5e/cc/a95ecc991d63a0032aa2f22a66e5eb09--english-movies-pride-and-prejudice.jpg"]
-  },
-  {
-    "title": "Harry Potter and the Sorcerer's Stone",
-    "author": "J.K. Rowling",
-    "price": 14.99,
-    "stock": 60,
-    "genre": [
-      "Fantasy",
-      "Young Adult"
-    ],
-    "description": "The first book in the Harry Potter series...",
-    "image": ["https://th.bing.com/th/id/R.a0586a687167c0b54121faded303a3e5?rik=H3zOs1tsPh3r4Q&pid=ImgRaw&r=0", "https://th.bing.com/th/id/R.88adf6f19d2a4084d860f1712b07d4ed?rik=OHw1r2ZzoRmWsg&riu=http%3a%2f%2fwww.zastavki.com%2fpictures%2foriginals%2f2014%2fMovies_Harry_Potter_and_the_Sorcerer_s_Stone_054980_.jpg&ehk=ugnsY01OCR7dT7Smjv9FwUnHk20YmUUvO1%2bpphzCR4c%3d&risl=&pid=ImgRaw&r=0", "https://th.bing.com/th/id/OIP.Za5QbcIx1BizbjC-3A5I3wHaI3?w=132&h=180&c=7&r=0&o=5&pid=1.7"]
-  },
-  {
-    "title": "The Hobbit",
-    "author": "J.R.R. Tolkien",
-    "price": 11.99,
-    "stock": 45,
-    "genre": [
-      "Fantasy",
-      "Adventure"
-    ],
-    "description": "The classic fantasy adventure...",
-    "image": ["https://th.bing.com/th/id/R.1bf3715f21b50729368463e6a3cc613b?rik=olxxr4G8vOPXRg&riu=http%3a%2f%2f4.bp.blogspot.com%2f-Qm7SYvrAabU%2fUPYIVCfLCBI%2fAAAAAAAAEwQ%2fb5fw-8ItJEY%2fs1600%2fHobbit_75th.jpg&ehk=bISAd63FnRVHwgP%2b9vveuZSplT7g1QCqb%2bawk7nHLEo%3d&risl=&pid=ImgRaw&r=0", "https://th.bing.com/th/id/OIP.QQzFQeuguU85h9fUXb_zwQHaK-?pid=ImgDet&rs=1", "https://th.bing.com/th/id/OIP.u1jvgQh_S5zIR3e4uX5oNwHaLH?pid=ImgDet&rs=1"]
-  },
-  {
-    "title": "The Catcher in the Rye",
-    "author": "J.D. Salinger",
-    "price": 9.99,
-    "stock": 35,
-    "genre": [
-      "Coming of Age",
-      "Fiction"
-    ],
-    "description": "A classic novel about adolescence...",
-    "image": ["https://th.bing.com/th/id/OIP.vsO42bypFFleaOIVCm7WsQHaJm?pid=ImgDet&rs=1", "https://th.bing.com/th/id/R.f13b223e0d84fef0a9cc5a4efd533a28?rik=EjHFo0U8TTrbMQ&riu=http%3a%2f%2f2.bp.blogspot.com%2f-kgJvYpz46iw%2fTt86IrMhCII%2fAAAAAAAADi4%2fVKBwyu8gE-c%2fs1600%2fcatcher.jpg&ehk=GjQ0R8m3bNNGU5DKgDLFjkSE8UDkZNQoveF6AQXpr7k%3d&risl=&pid=ImgRaw&r=0", "https://cdn2.penguin.com.au/covers/original/9780241988794.jpg"]
 
-  },
-];
+
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [cart, setCart] = useState([]); 
+  const [cart, setCart] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
+  const [books, setBooks] = useState(Carddata);
+  const [newBook, setNewBook] = useState({
+    title: "",
+    author: "",
+    price: 0,
+    stock: 0,
+    image: [],
+    description: "",
+    genre: "",
+  });
+
+  
+  const addBook = () => {
+    const updatedBooks = [...books, newBook];
+    setBooks(updatedBooks);
+    console.log(updatedBooks)
+  };
 
   const handleNextClick = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % cardData.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % books.length);
   };
   const handlePrevClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? cardData.length - 1 : prevIndex - 1
+      prevIndex === 0 ? books.length - 1 : prevIndex - 1
     );
   };
   const handleNextImageClick = () => {
     setCurrentImageIndex((prevIndex) =>
-      (prevIndex + 1) % cardData[currentIndex].image.length
+      (prevIndex + 1) % books[currentIndex].image.length
     );
   };
   const handleAddToCart = () => {
-    const selectedBook = cardData[currentIndex];
+    const selectedBook = books[currentIndex];
     setCart([...cart, selectedBook]);
   };
 
-  const handleToggleCart = () => {
+  const handleToggleCart = (e) => {
+    e.stopPropagation();
+    alert("Cart is toggled!");
     setIsCartVisible(!isCartVisible);
   };
   const calculateTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
+    return cart.reduce((total, item) => total + parseFloat(item.price || 0), 0);
   };
+  
 
-
-  const currentCard = cardData[currentIndex];
-  const currentImage = currentCard.image[currentImageIndex];
+  const currentCard = books[currentIndex];
+  const currentImage = currentCard.image[currentImageIndex].toString();
+  console.log("currentCard.title",currentCard.title,"currentImage",currentImage)  
 
 
   return (
@@ -152,6 +94,7 @@ function App() {
         <button style={buttonStyles} onClick={handleNextImageClick}>Next Image</button>
         <button style={buttonStyles} onClick={handleAddToCart}>Add to Cart</button>
         <button style={buttonStyles} onClick={handleToggleCart}>View Cart</button>
+       
       </div>
       <div> {currentCard && (
         <div key={currentCard.title}>
@@ -167,20 +110,9 @@ function App() {
           />
         </div>
       )}</div>
-     {isCartVisible && (
-        <div style={cartStyles}>
-          <h2>Cart</h2>
-          <ul>
-            {cart.map((item, index) => (
-              <li key={index}>{item.title}</li>
-            ))}
-          </ul>
-          <p>Total Price: ${calculateTotalPrice().toFixed(2)}</p> 
-        </div>
-      )}
-       {/* {isCartVisible && (
-        <Cartcomponent cart={Cartcomponent} calculateTotalPrice={calculateTotalPrice} />
-      )} */}
+    
+      {isCartVisible && <Showcart cart={cart} calculateTotalPrice={calculateTotalPrice} />}
+    <AddBookPage onAddBook={addBook} newBook={newBook} setNewBook={setNewBook}/> 
       <Footer />
     </div>
   );

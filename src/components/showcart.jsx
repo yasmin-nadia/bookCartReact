@@ -1,7 +1,5 @@
-import React from "react";
-
-const Cart = ({ cart, calculateTotalPrice }) => {
-  const cartStyles = {
+import React from 'react';
+const cartStyles = {
     position: "fixed",
     top: "0",
     right: "0",
@@ -11,6 +9,7 @@ const Cart = ({ cart, calculateTotalPrice }) => {
     zIndex: "999",
   };
 
+const Showcart = ({ cart, calculateTotalPrice }) => {
   return (
     <div style={cartStyles}>
       <h2>Cart</h2>
@@ -24,4 +23,4 @@ const Cart = ({ cart, calculateTotalPrice }) => {
   );
 };
 
-export default Cart;
+export default Showcart;
