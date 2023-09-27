@@ -66,7 +66,14 @@ function App() {
   };
   const handleAddToCart = () => {
     const selectedBook = books[currentIndex];
-    setCart([...cart, selectedBook]);
+    const existingCartItem = cart.find((cartItem) => cartItem.item.title === selectedBook.title);
+
+    if (existingCartItem) {
+      existingCartItem.quantity += 1;
+      setCart([...cart]);
+    } else {
+      setCart([...cart, { item: selectedBook, quantity: 1 }]);
+    }
   };
 
   const handleToggleCart = (e) => {
@@ -113,7 +120,9 @@ function App() {
     
       {isCartVisible && <Showcart cart={cart} calculateTotalPrice={calculateTotalPrice} />}
     <AddBookPage onAddBook={addBook} newBook={newBook} setNewBook={setNewBook}/> 
-      <Footer />
+
+
+    <Footer />
     </div>
   );
 }
