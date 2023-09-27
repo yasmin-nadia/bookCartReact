@@ -19,10 +19,12 @@ console.log("carddata", Carddata)
 const buttonStyles = {
   margin: "0 10px",
   padding: "10px 20px",
-  backgroundColor: "#734d26",
+  backgroundColor: "#996633",
+
   color: "white",
-  border: "none",
+  border: "2px solid #734d26",
   cursor: "pointer",
+  borderRadius:"5px"
 };
 
 
@@ -76,14 +78,36 @@ function App() {
     }
   };
 
+
+  const handleRemoveFromCart = () => {
+    const selectedBook = books[currentIndex];
+    const existingCartItem = cart.find((cartItem) => cartItem.item.title === selectedBook.title);
+  
+    if (existingCartItem) {
+      if (existingCartItem.quantity === 1) {
+        // Remove the item from the cart if its quantity is 1
+        const updatedCart = cart.filter((cartItem) => cartItem.item.title !== selectedBook.title);
+        setCart(updatedCart);
+      } else {
+        // Decrease the quantity by 1 if it's greater than 1
+        existingCartItem.quantity -= 1;
+        setCart([...cart]);
+      }
+    }
+  };
+  
+
   const handleToggleCart = (e) => {
     e.stopPropagation();
     alert("Cart is toggled!");
     setIsCartVisible(!isCartVisible);
   };
   const calculateTotalPrice = () => {
-    return cart.reduce((total, item) => total + parseFloat(item.price || 0), 0);
+    return cart.reduce((total, cartItem) => {
+      return total + cartItem.item.price * cartItem.quantity;
+    }, 0);
   };
+  
   
 
   const currentCard = books[currentIndex];
@@ -100,6 +124,7 @@ function App() {
         <button style={buttonStyles} onClick={handlePrevClick}>Prev</button>
         <button style={buttonStyles} onClick={handleNextImageClick}>Next Image</button>
         <button style={buttonStyles} onClick={handleAddToCart}>Add to Cart</button>
+        <button style={buttonStyles} onClick={handleRemoveFromCart}>Remove from Cart</button>
         <button style={buttonStyles} onClick={handleToggleCart}>View Cart</button>
        
       </div>
