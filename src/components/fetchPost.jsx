@@ -1,6 +1,6 @@
 import react, { useEffect, useState } from "react";
-import useProductHook from "../hooks/userProductHook";
 import useProductPostHook from "../hooks/userProductAdd";
+import { useForm, Controller } from "react-hook-form";
 const FetchPost = () => {
   const { createPost, loading } = useProductPostHook();
   const [productTitle, setProductTitle] = useState("");
@@ -12,6 +12,13 @@ const FetchPost = () => {
   const [productCat, setProductCat] = useState("");
   const [productGenre, setProductGen] = useState([]);
   const [productPub, setProductPub] = useState("");
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    getValues,
+  } = useForm();
 
   const formStyles = {
     maxWidth: "400px",
@@ -46,128 +53,241 @@ const FetchPost = () => {
     cursor: "pointer",
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Submitting");
-    const data = {
-      title: productTitle,
-      author: productAuth,
-      price: productPrice,
-      stock: productStock,
-      category: productCat,
-      genre: productGenre,
-      pages: productPages,
-      publisher: productPub,
-      description: productDes,
-    };
+  const handlerOnSubmit = (data) => {
+    console.log("Form is submitted ", data);
     createPost(data);
   };
-
-  const { productData } = useProductHook();
   useEffect(() => {
-    console.log("From fetchDemmo ", productData);
-  }, [productData]);
+    console.log("Errors: ", errors);
+  }, [errors]);
+
   return (
     <div>
       <h1>Add product</h1>
       {loading === true && <h4>Loading...</h4>}
-      <form style={formStyles} onSubmit={handleSubmit}>
+      <form style={formStyles} onSubmit={handleSubmit(handlerOnSubmit)}>
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Title:</label>
-          <input
-            type="text"
-            label="title"
-            placeholder="input title"
-            onChange={(e) => setProductTitle(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="title"
+            control={control}
+            rules={{
+              required: "title is required",
+              minLength: {
+                value: 6,
+                message: "Minimum length must be 6",
+              },
+              maxLength: {
+                value: 20,
+                message: "Minimum length must be 20",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter title"
+                {...field}
+                style={{ border: errors.title ? "1px solid red" : "" }}
+              />
+            )}
           />
+          {errors.title && <h5>{errors.title.message}</h5>}
         </div>
 
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Author:</label>
-          <input
-            type="text"
-            label="author"
-            placeholder="input author"
-            onChange={(e) => setProductAuth(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="author"
+            control={control}
+            rules={{
+              required: "author is required",
+              minLength: {
+                value: 6,
+                message: "Minimum length must be 6",
+              },
+              maxLength: {
+                value: 20,
+                message: "Minimum length must be 20",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter author"
+                {...field}
+                style={{ border: errors.author ? "1px solid red" : "" }}
+              />
+            )}
           />
+          {errors.author && <h5>{errors.author.message}</h5>}
         </div>
 
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Price:</label>
-          <input
-            type="number"
-            label="price"
-            placeholder="input price"
-            onChange={(e) => setProductPrice(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="price"
+            control={control}
+            rules={{
+              required: "price is required",
+              min: {
+                value: 20,
+                message: "Price must be greater than or equal to 20",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter price"
+                {...field}
+                style={{ border: errors.price ? "1px solid red" : "" }}
+              />
+            )}
           />
+          {errors.price && <h5>{errors.price.message}</h5>}
         </div>
 
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Stock:</label>
-          <input
-            type="number"
-            label="stock"
-            placeholder="input stock"
-            onChange={(e) => setProductStock(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="stock"
+            control={control}
+            rules={{
+              required: "stock is required",
+              min: {
+                value: 5,
+                message: "Stock must be greater than or equal to 5",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter stock"
+                {...field}
+                style={{ border: errors.stock ? "1px solid red" : "" }}
+              />
+            )}
           />
-        </div>
-        <div style={inputContainerStyles}>
-          <label style={labelStyles}>Genre:</label>
-          <input
-            type="text"
-            label="Genre"
-            placeholder="input Genre"
-            onChange={(e) => setProductGen(e.target.value)}
-            style={inputStyles}
-          />
+          {errors.stock && <h5>{errors.stock.message}</h5>}
         </div>
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Category:</label>
-          <input
-            type="text"
-            label="Category"
-            placeholder="input Category"
-            onChange={(e) => setProductCat(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="category"
+            control={control}
+            rules={{
+              required: "category is required",
+              minLength: {
+                value: 6,
+                message: "category length must be 20",
+              },
+              maxLength: {
+                value: 20,
+                message: "Minimum length must be 100",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter category"
+                {...field}
+                style={{ border: errors.category ? "1px solid red" : "" }}
+              />
+            )}
           />
+          {errors.category && <h5>{errors.category.message}</h5>}
+        </div>
+        <div style={inputContainerStyles}>
+          <label style={labelStyles}>Genre:</label>
+          <Controller
+            name="genre"
+            control={control}
+            rules={{
+              required: "genre is required",
+              minLength: {
+                value: 5,
+                message: "genre length must be 5",
+              },
+              maxLength: {
+                value: 20,
+                message: "Minimum length must be 20",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter category"
+                {...field}
+                style={{ border: errors.genre ? "1px solid red" : "" }}
+              />
+            )}
+          />
+          {errors.genre && <h5>{errors.genre.message}</h5>}
         </div>
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Description:</label>
-          <input
-            type="text"
-            label="description"
-            placeholder="input description"
-            onChange={(e) => setProductDes(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="description"
+            control={control}
+            rules={{
+              required: "description is required",
+              minLength: {
+                value: 5,
+                message: "description length must be 5",
+              },
+              maxLength: {
+                value: 200,
+                message: "Minimum length must be 200",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter description"
+                {...field}
+                style={{ border: errors.description ? "1px solid red" : "" }}
+              />
+            )}
           />
+          {errors.description && <h5>{errors.description.message}</h5>}
         </div>
-
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Publisher:</label>
-          <input
-            type="text"
-            label="publisher"
-            placeholder="input publisher"
-            onChange={(e) => setProductPub(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="publisher"
+            control={control}
+            rules={{
+              required: "publisher is required",
+              minLength: {
+                value: 6,
+                message: "publisher length must be 6",
+              },
+              maxLength: {
+                value: 200,
+                message: "Minimum length must be 200",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter publisher"
+                {...field}
+                style={{ border: errors.publisher ? "1px solid red" : "" }}
+              />
+            )}
           />
+          {errors.publisher && <h5>{errors.publisher.message}</h5>}
         </div>
         <div style={inputContainerStyles}>
           <label style={labelStyles}>Pages:</label>
-          <input
-            type="number"
-            label="pages"
-            placeholder="input pages"
-            onChange={(e) => setProductPages(e.target.value)}
-            style={inputStyles}
+          <Controller
+            name="pages"
+            control={control}
+            rules={{
+              required: "pages is required",
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Enter pages"
+                {...field}
+                style={{ border: errors.pages ? "1px solid red" : "" }}
+              />
+            )}
           />
+          {errors.pages && <h5>{errors.pages.message}</h5>}
         </div>
-
-        <button type="button" onClick={handleSubmit} style={submitButtonStyles}>
+        <button type="submit" style={submitButtonStyles}>
           Add Book
         </button>
       </form>

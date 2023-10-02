@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import axiosInstance from "../utils/axiosInstance";
 const useProductHook = () => {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -7,15 +9,17 @@ const useProductHook = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://127.0.0.1:8001/mybooks/getbook")
-      .then((resp) => resp.json())
+    axiosInstance
+      .get("/getbook")
+      .then((resp) => resp.data)
       .then((data) => {
-        console.log("fetched ", data);
+        console.log("Fetched Data ", data);
         setProductData(data.data);
         setLoading(false);
+        console.log("axiosInstance is working");
+        return data;
       })
       .catch((err) => {
-        setError(err);
         console.error("Error fetching data:", err);
       })
       .finally(() => {

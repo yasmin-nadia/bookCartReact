@@ -1,31 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import axiosInstance from "../utils/axiosInstance";
 const useProductUpdateHook = () => {
   const [loading, setLoading] = useState(false);
 
   const createUpdate = (formData) => {
     setLoading(true);
-    fetch("http://127.0.0.1:8001/mybooks/updatebook", {
-      method: "PUT",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          //   throw new Error(`Network response was not ok: ${response.status}`);
-          console.log("`Network response was not ok:", error);
-        }
-        return response.json();
-      })
+    axiosInstance
+      .put("/updatebook", formData)
+      .then((response) => response.data)
       .then((data) => {
-        console.log("Successfully Updated book:", data);
         setLoading(false);
+        console.log("Successfully Updated book:", data);
+        return data;
       })
       .catch((error) => {
         setLoading(false);
-
-        console.error("Error adding book:", error);
+        console.error("Error updating book:", error);
+        throw error;
       });
   };
   return { createUpdate, loading };

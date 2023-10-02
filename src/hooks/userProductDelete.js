@@ -1,31 +1,22 @@
 import { useState, useEffect } from "react";
+import axiosInstance from "../utils/axiosInstance";
 const useProductDeleteHook = () => {
   const [loading, setLoading] = useState(false);
 
   const createDelete = (formData) => {
-    fetch("http://127.0.0.1:8001/mybooks/deletebook", {
-      method: "DELETE",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          //   throw new Error(`Network response was not ok: ${response.status}`);
-          console.log("`Network response was not ok:", error);
-        }
-        return response.json();
-      })
+    setLoading(true);
+    axiosInstance
+      .delete("/deletebook", { data: formData })
+      .then((response) => response.data)
       .then((data) => {
         setLoading(false);
-
-        console.log("Successfully delete book:", data);
+        console.log("Successfully deleted book:", data);
+        return data;
       })
       .catch((error) => {
         setLoading(false);
-
-        console.error("Error deleting book:", error);
+        console.error("Error deleted book:", error);
+        throw error;
       });
   };
   return { createDelete, loading };

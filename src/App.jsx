@@ -12,6 +12,7 @@ import FetchDemo from "./components/fetchDemo";
 import FetchPost from "./components/fetchPost";
 import FetchUpdate from "./components/fetchUpdate";
 import FetchDelete from "./components/fetchDelete";
+import DebounceDemo from "./components/deboundsdemo";
 // const buttonContainerStyles = {
 //   display: "flex",
 //   justifyContent: "center",
@@ -140,7 +141,7 @@ function App() {
     
       {isCartVisible && <Showcart cart={cart} calculateTotalPrice={calculateTotalPrice} />}
     <AddBookPage onAddBook={addBook} newBook={newBook} setNewBook={setNewBook}/>  */}
-
+      <DebounceDemo />
       <FetchDemo />
       <FetchPost />
       <FetchUpdate />
