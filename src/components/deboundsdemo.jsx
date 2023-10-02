@@ -40,14 +40,17 @@ const DebounceDemo = () => {
   console.log("productData", productData);
 
   return (
-    <div>
-      <h1>MODULE: Debounce demo</h1>
-      <input
-        placeholder="Enter Search text"
-        onChange={(e) => setProductSearchParam(e.target.value)}
-      />
+    <div className="debounce-demo-container">
+      {/* <h1>search</h1> */}
+      <div className="search-bar-container">
+        <input
+          className="search-bar"
+          placeholder="Search for products..."
+          onChange={(e) => setProductSearchParam(e.target.value)}
+        />
+      </div>
 
-      <h4>Fetched data by search parameter: </h4>
+      <h4>Showing the results: </h4>
       <div>
         {productData.length > 0
           ? productData.map((book, index) => (
