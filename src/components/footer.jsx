@@ -8,6 +8,7 @@ const Footer = () => {
         color: "white",
         bottom: 0,
         width: "100%",
+        position: "fixed",
       }}
     >
       &copy; All Rights Reserved.

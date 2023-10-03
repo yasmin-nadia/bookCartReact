@@ -1,4 +1,5 @@
-import React, { useState } from "react"; // Import React and useState
+import React, { createContext, useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Carddata from "./components/carddata";
@@ -13,6 +14,8 @@ import FetchPost from "./components/fetchPost";
 import FetchUpdate from "./components/fetchUpdate";
 import FetchDelete from "./components/fetchDelete";
 import DebounceDemo from "./components/deboundsdemo";
+import FetchUserPost from "./pages/addUser";
+import ProductDetails from "./pages/productsDetailPage";
 // const buttonContainerStyles = {
 //   display: "flex",
 //   justifyContent: "center",
@@ -113,7 +116,6 @@ function App() {
 
   return (
     <div>
-      <Header />
       {/* <div style={buttonContainerStyles}>
         <button style={buttonStyles} onClick={handleNextClick}>Next</button>
 
@@ -141,12 +143,19 @@ function App() {
     
       {isCartVisible && <Showcart cart={cart} calculateTotalPrice={calculateTotalPrice} />}
     <AddBookPage onAddBook={addBook} newBook={newBook} setNewBook={setNewBook}/>  */}
-      <DebounceDemo />
-      <FetchDemo />
-      <FetchPost />
-      <FetchUpdate />
-      <FetchDelete />
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/search" element={<DebounceDemo />} />
+          <Route path="/" element={<FetchDemo />} />
+          <Route path="/createbook" element={<FetchPost />} />
+          <Route path="/updatebook" element={<FetchUpdate />} />
+          <Route path="/createuser" element={<FetchUserPost />} />
+          <Route path="/deletebook" element={<FetchDelete />} />
+          <Route path="/products/:productId" element={<ProductDetails />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

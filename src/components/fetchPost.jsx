@@ -60,6 +60,11 @@ const FetchPost = () => {
   useEffect(() => {
     console.log("Errors: ", errors);
   }, [errors]);
+  const handleImageInputChange = (e) => {
+    const file = e.target.files[0]; // Get the selected file
+    setSelectedImage(file); // Update the state with the selected file
+  };
+  const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <div>
@@ -287,6 +292,45 @@ const FetchPost = () => {
           />
           {errors.pages && <h5>{errors.pages.message}</h5>}
         </div>
+        <div style={inputContainerStyles}>
+          <label style={labelStyles}>Image:</label>
+          <Controller
+            name="image"
+            control={control}
+            rules={{
+              required: "Image is required",
+            }}
+            render={({ field }) => (
+              <>
+                <input
+                  type="file"
+                  {...field}
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    handleImageInputChange(e);
+                  }}
+                />
+                <label
+                  htmlFor="image"
+                  style={{
+                    backgroundColor: "#734d26",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "4px",
+                    padding: "10px 20px",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                    display: "inline-block",
+                  }}
+                >
+                  Upload Image
+                </label>
+              </>
+            )}
+          />
+        </div>
+
         <button type="submit" style={submitButtonStyles}>
           Add Book
         </button>

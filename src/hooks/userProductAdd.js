@@ -1,28 +1,29 @@
-import { useState, useEffect, useContext } from "react";
-
+import { useState, useEffect } from "react";
 import axiosInstance from "../utils/axiosInstance";
 
-const useProductAddHook = () => {
+const useProductGetHook = () => {
+  const [productData, setProductData] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const createPost = (formData) => {
-    setLoading(true);
-    axiosInstance
-      .post("/addbook", formData)
-      .then((response) => response.data)
-      .then((data) => {
+  useEffect(() => {
+    const fetchProduct = async (productId) => {
+      setLoading(true);
+      try {
+        const response = await axiosInstance.get(`/getproduct/${productId}`);
+        const data = response.data;
+        setProductData(data);
         setLoading(false);
-        console.log("Successfully added book:", data);
-        return data;
-      })
-      .catch((error) => {
+      } catch (error) {
         setLoading(false);
-        console.error("Error adding book:", error);
-        throw error;
-      });
-  };
+        console.error("Error fetching product:", error);
+      }
+    };
 
-  return { createPost, loading };
+    // Fetch product data when the component mounts
+    fetchProduct(productId);
+  }, [productId]);
+
+  return { productData, loading };
 };
 
-export default useProductAddHook;
+export default useProductGetHook;
