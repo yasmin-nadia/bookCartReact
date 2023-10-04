@@ -1,5 +1,3 @@
-/* App.css */
-
 body {
   width: 100%;
   height: 100vh;
@@ -8,6 +6,61 @@ body {
   padding: 0;
   font-family: 'Roboto', sans-serif; /* Change to your preferred font */
 }
+.header-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #604020;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 90px; /* Adjusted padding */
+  position: relative;
+}
+
+.header-logo {
+  width: 100px;
+  height: auto;
+}
+
+.header-link {
+  text-decoration: none;
+  color: white;
+  margin: 0 15px; /* Spacing between links */
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.header-link:hover {
+  color: #fff; /* Hover color */
+}
+/* Updated Header Styles */
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: #34495e; /* Updated background color */
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 90px; /* Increased padding */
+  position: relative;
+  color: #fff; /* Text color */
+}
+
+.header img {
+  width: 100px;
+  height: auto;
+}
+
+.header a {
+  text-decoration: none;
+  color: #fff; /* Link text color */
+  margin: 0 15px; /* Spacing between links */
+  font-size: 18px; /* Font size */
+  transition: color 0.3s;
+}
+
+.header a:hover {
+  color: #e74c3c; /* Hover color */
+}
+
 .debounce-demo-container {
   text-align: center;
   background-color: #ffffff;
@@ -16,6 +69,7 @@ body {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 20px;
 }
+
 
 .search-bar-container {
   margin-bottom: 20px;
@@ -54,8 +108,22 @@ h3 {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* More space per item */
   grid-gap: 20px;
 }
+.product-grid-two {
+ 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* More space per item */
+  grid-gap: 20px;
+}
 
 .product-item {
+  padding: 20px;
+  background-color: #f9f9f9; /* Light gray background for items */
+  border: 1px solid #ddd;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.product-item-two {
   padding: 20px;
   background-color: #f9f9f9; /* Light gray background for items */
   border: 1px solid #ddd;
@@ -96,6 +164,10 @@ h3 {
 
 .add-to-cart-button:hover {
   background-color: #5a3e1d; /* Darker button on hover */
+}
+.show-product-detail{
+  justify-content: center;
+  align-items:center;
 }
 
 /* Add any additional CSS styles as needed. */

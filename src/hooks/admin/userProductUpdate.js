@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import axiosInstance from "../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 const useProductUpdateHook = () => {
   const [loading, setLoading] = useState(false);
 

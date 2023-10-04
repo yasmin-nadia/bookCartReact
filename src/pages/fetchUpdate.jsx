@@ -1,7 +1,5 @@
 import react, { useEffect, useState } from "react";
-import useProductHook from "../hooks/userProductHook";
-import useProductPostHook from "../hooks/userProductAdd";
-import useProductUpdateHook from "../hooks/userProductUpdate";
+import useProductUpdateHook from "../hooks/admin/userProductUpdate";
 const FetchUpdate = () => {
   const { createUpdate, loading } = useProductUpdateHook();
   const [productTitle, setProductTitle] = useState("");

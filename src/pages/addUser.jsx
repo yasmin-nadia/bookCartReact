@@ -1,18 +1,8 @@
 import react, { useEffect, useState } from "react";
-import useAddHook from "../hooks/userAdd";
+import useAddHook from "../hooks/admin/userAdd";
 import { useForm, Controller } from "react-hook-form";
 const FetchUserPost = () => {
   const { createPost, loading } = useAddHook();
-
-  const [productTitle, setProductTitle] = useState("");
-  const [productDes, setProductDes] = useState("");
-  const [productAuth, setProductAuth] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-  const [productStock, setProductStock] = useState(0);
-  const [productPages, setProductPages] = useState(0);
-  const [productCat, setProductCat] = useState("");
-  const [productGenre, setProductGen] = useState([]);
-  const [productPub, setProductPub] = useState("");
 
   const {
     handleSubmit,

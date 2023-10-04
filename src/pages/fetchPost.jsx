@@ -1,5 +1,5 @@
 import react, { useEffect, useState } from "react";
-import useProductPostHook from "../hooks/userProductAdd";
+import useProductPostHook from "../hooks/admin/userProductAdd";
 import { useForm, Controller } from "react-hook-form";
 const FetchPost = () => {
   const { createPost, loading } = useProductPostHook();
