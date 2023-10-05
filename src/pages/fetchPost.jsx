@@ -3,15 +3,6 @@ import useProductPostHook from "../hooks/admin/userProductAdd";
 import { useForm, Controller } from "react-hook-form";
 const FetchPost = () => {
   const { createPost, loading } = useProductPostHook();
-  const [productTitle, setProductTitle] = useState("");
-  const [productDes, setProductDes] = useState("");
-  const [productAuth, setProductAuth] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
-  const [productStock, setProductStock] = useState(0);
-  const [productPages, setProductPages] = useState(0);
-  const [productCat, setProductCat] = useState("");
-  const [productGenre, setProductGen] = useState([]);
-  const [productPub, setProductPub] = useState("");
 
   const {
     handleSubmit,

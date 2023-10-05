@@ -18,6 +18,11 @@ const Header = () => {
         </Link>
       </div>
       <div>
+        <Link to="/login" className="header-link">
+          Login
+        </Link>
+      </div>
+      <div>
         <Link to="/search" className="header-link">
           Search
         </Link>
@@ -40,6 +45,11 @@ const Header = () => {
       <div>
         <Link to="/deletebook" className="header-link">
           Delete product
+        </Link>
+      </div>
+      <div>
+        <Link to="/userlist" className="header-link">
+          Show user
         </Link>
       </div>
       {/* <Button /> */}

@@ -1,9 +1,13 @@
 import react, { useEffect, useState } from "react";
 import useAddHook from "../hooks/admin/userAdd";
 import { useForm, Controller } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo } from "../redux/actions/taskAction";
 const FetchUserPost = () => {
   const { createPost, loading } = useAddHook();
-
+  const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.tasks.tasksList);
+  console.log("tasks", tasks);
   const {
     handleSubmit,
     control,
@@ -48,6 +52,7 @@ const FetchUserPost = () => {
   const handlerOnSubmit = (data) => {
     console.log("Form is submitted ", data);
     createPost(data);
+    dispatch(addTodo(data));
   };
   useEffect(() => {
     console.log("Errors: ", errors);
@@ -71,7 +76,7 @@ const FetchUserPost = () => {
             rules={{
               required: "email is required",
               pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i, // Regex for email validation
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                 message: "Invalid email address",
               },
             }}

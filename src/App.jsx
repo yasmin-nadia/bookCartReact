@@ -16,6 +16,10 @@ import FetchDelete from "./pages/fetchDelete";
 import DebounceDemo from "./pages/deboundsdemo";
 import FetchUserPost from "./pages/addUser";
 import ProductDetails from "./pages/productsDetailPage";
+import Login from "./pages/login";
+import Authenticate from "./pages/authenticate";
+import UserList from "./pages/userList";
+import Blog from "./pages/blogs";
 // const buttonContainerStyles = {
 //   display: "flex",
 //   justifyContent: "center",
@@ -148,11 +152,16 @@ function App() {
         <Routes>
           <Route path="/search" element={<DebounceDemo />} />
           <Route path="/" element={<FetchDemo />} />
-          <Route path="/createbook" element={<FetchPost />} />
-          <Route path="/updatebook" element={<FetchUpdate />} />
-          <Route path="/createuser" element={<FetchUserPost />} />
-          <Route path="/deletebook" element={<FetchDelete />} />
+          <Route path="/userlist" element={<UserList />} />
+          <Route path="/userdetails" element={<Blog />} />
+          <Route element={<Authenticate />}>
+            <Route path="/createbook" element={<FetchPost />} />
+            <Route path="/updatebook" element={<FetchUpdate />} />
+            <Route path="/createuser" element={<FetchUserPost />} />
+            <Route path="/deletebook" element={<FetchDelete />} />
+          </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </BrowserRouter>
