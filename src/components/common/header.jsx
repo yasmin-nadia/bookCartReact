@@ -52,6 +52,11 @@ const Header = () => {
           Show user
         </Link>
       </div>
+      <div>
+        <Link to="/showtransaction" className="header-link">
+          Show transaction
+        </Link>
+      </div>
 
       {/* <Button /> */}
     </div>

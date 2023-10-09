@@ -22,6 +22,7 @@ import UserList from "./pages/userList";
 import Blog from "./pages/blogs";
 import CartList from "./pages/showCart";
 import ShowCheckout from "./pages/checkout";
+import ShowTranList from "./pages/showtransaction";
 // const buttonContainerStyles = {
 //   display: "flex",
 //   justifyContent: "center",
@@ -163,6 +164,7 @@ function App() {
             <Route path="/deletebook" element={<FetchDelete />} />
             <Route path="/cart" element={<CartList />} />
             <Route path="/showcheckout" element={<ShowCheckout />} />
+            <Route path="/showtransaction" element={<ShowTranList />} />
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />

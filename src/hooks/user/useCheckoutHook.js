@@ -26,7 +26,7 @@ const useCheckoutHook = () => {
   };
 
   useEffect(() => {
-    createCheckout(); // Call createCheckout inside useEffect
+    createCheckout();
   }, []);
 
   return {

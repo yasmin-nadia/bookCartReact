@@ -176,4 +176,29 @@ h3 {
   align-items: center;
   padding: 2px;
 }
+/* app.css */
 
+/* app.css */
+
+/* Styles for the container */
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 100vh; /* Make the container fill the entire viewport height */
+}
+
+/* Styles for the title */
+.checkout-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333; /* Change to your desired text color */
+  margin-bottom: 20px;
+}
+
+/* Styles for the message */
+.checkout-message {
+  font-size: 18px;
+  color: #666; /* Change to your desired text color */
+}

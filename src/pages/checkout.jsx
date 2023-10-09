@@ -1,20 +1,21 @@
 import { useLocation } from "react-router-dom";
 import useCheckoutHook from "../hooks/user/useCheckoutHook";
 import { useEffect } from "react";
+import "../App.css";
 
 function ShowCheckout() {
-  const { createCheckout, loading_one, data_r, responseData } =
-    useCheckoutHook(); // Access responseData from location state
+  const { responseData } = useCheckoutHook();
 
   useEffect(() => {
     console.log(responseData);
   }, [responseData]);
-  //   console.log(responseData);
+
   return (
-    <div>
-      <h1>Checkout Page</h1>
-      {responseData && <p>Response Data from Checkout: {responseData}</p>}
+    <div className="checkout-container">
+      <h1 className="checkout-title">Checkout Status</h1>
+      {responseData && <p className="checkout-message">{responseData}</p>}
     </div>
   );
 }
+
 export default ShowCheckout;
