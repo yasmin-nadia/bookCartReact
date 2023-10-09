@@ -159,6 +159,7 @@ h3 {
   font-size: 18px; /* Larger button text */
   cursor: pointer;
   margin-top: 20px;
+  margin-right: 2px;
   transition: background-color 0.3s;
 }
 
@@ -169,5 +170,10 @@ h3 {
   justify-content: center;
   align-items:center;
 }
+.cart-button-element {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 2px;
+}
 
-/* Add any additional CSS styles as needed. */

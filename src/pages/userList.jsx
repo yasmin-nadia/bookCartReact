@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../App.css";
 
 const UserList = () => {
-  const tasks = useSelector((state) => state.tasks.tasksList);
-  console.log("User", tasks);
+  const users = useSelector((state) => state.user.users);
+  console.log("User", users);
 
   const navigate = useNavigate(); // Get the navigate function
 
-  if (tasks.length < 1) {
+  if (users.length < 1) {
     return (
       <div className="fetch-demo-container">
         <h1>No users available</h1>
@@ -21,7 +21,7 @@ const UserList = () => {
     <div className="fetch-demo-container">
       <h1>All Users</h1>
       <div className="product-grid">
-        {tasks.map((task) => (
+        {users.map((task) => (
           <div className="product-item" key={task.id}>
             <h5>{task.text.name}</h5>
             <p>Email: {task.text.email}</p>

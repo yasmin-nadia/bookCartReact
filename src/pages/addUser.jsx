@@ -2,12 +2,12 @@ import react, { useEffect, useState } from "react";
 import useAddHook from "../hooks/admin/userAdd";
 import { useForm, Controller } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo } from "../redux/actions/taskAction";
+import { addUser } from "../redux/slices/userslice";
 const FetchUserPost = () => {
   const { createPost, loading } = useAddHook();
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.tasks.tasksList);
-  console.log("tasks", tasks);
+  const users = useSelector((state) => state.user.users);
+  console.log("Users", users);
   const {
     handleSubmit,
     control,
@@ -52,7 +52,7 @@ const FetchUserPost = () => {
   const handlerOnSubmit = (data) => {
     console.log("Form is submitted ", data);
     createPost(data);
-    dispatch(addTodo(data));
+    dispatch(addUser(data));
   };
   useEffect(() => {
     console.log("Errors: ", errors);

@@ -20,6 +20,8 @@ import Login from "./pages/login";
 import Authenticate from "./pages/authenticate";
 import UserList from "./pages/userList";
 import Blog from "./pages/blogs";
+import CartList from "./pages/showCart";
+import ShowCheckout from "./pages/checkout";
 // const buttonContainerStyles = {
 //   display: "flex",
 //   justifyContent: "center",
@@ -159,6 +161,8 @@ function App() {
             <Route path="/updatebook" element={<FetchUpdate />} />
             <Route path="/createuser" element={<FetchUserPost />} />
             <Route path="/deletebook" element={<FetchDelete />} />
+            <Route path="/cart" element={<CartList />} />
+            <Route path="/showcheckout" element={<ShowCheckout />} />
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/login" element={<Login />} />
