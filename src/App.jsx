@@ -2,8 +2,11 @@ import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/common/header";
 import Footer from "./components/common/footer";
+import Usernavbar from "./components/user/usernavbar";
+import Adminnavbar from "./components/admin/adminnavbar";
 // import Carddata from "./components/carddata";
 import "./App.css";
+import { AuthProvider } from "./pages/AuthContext"; 
 // import Addtocart from "./components/addtocart";
 // import Showcart from "./components/showcart";
 // import Cardcomponent from "./components/card";
@@ -25,6 +28,7 @@ import Blog from "./pages/blogs";
 import CartList from "./pages/showCart";
 import ShowCheckout from "./pages/checkout";
 import ShowTranList from "./pages/showtransaction";
+import Userloggedin from "./pages/loginUser";
 // const buttonContainerStyles = {
 //   display: "flex",
 //   justifyContent: "center",
@@ -154,7 +158,9 @@ function App() {
     <AddBookPage onAddBook={addBook} newBook={newBook} setNewBook={setNewBook}/>  */}
       <BrowserRouter>
         <Header />
-        <Routes>
+        <AuthProvider>
+      <Routes>
+        
           <Route path="/search" element={<DebounceDemo />} />
           <Route path="/" element={<FetchDemo />} />
           
@@ -171,11 +177,18 @@ function App() {
           <Route path="/cart" element={<CartList />} />
             <Route path="/showcheckout" element={<ShowCheckout />} />
             <Route path="/showtransaction" element={<ShowTranList />} />
+            
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
-          <Route path="/login/user" element={<Login />} />
+        
+        <Route path="/userloggedin" element={<Userloggedin />} />
+        <Route path="/login/user" element={<Login />} />
+     
+      
           <Route path="/login/admin" element={<LoginAdmin />} />
-        </Routes>
+          
+          </Routes>
+    </AuthProvider>
         <Footer />
       </BrowserRouter>
     </div>

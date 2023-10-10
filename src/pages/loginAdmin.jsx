@@ -46,7 +46,7 @@ const LoginAdmin = () => {
 
   return (
     <div>
-      <h1>Please Login here</h1>
+      <h1>Please Login here as admin</h1>
       {loading === true && <h4>Loading...</h4>}
       <form style={formStyles} onSubmit={handleSubmit(createLogin)}>
         <div style={inputContainerStyles}>
