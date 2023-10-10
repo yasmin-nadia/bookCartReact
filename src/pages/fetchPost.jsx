@@ -1,9 +1,13 @@
 import react, { useEffect, useState } from "react";
 import useProductPostHook from "../hooks/admin/userProductAdd";
 import { useForm, Controller } from "react-hook-form";
+import jwtDecode from "jwt-decode";
 const FetchPost = () => {
   const { createPost, loading } = useProductPostHook();
-
+  const check = localStorage.getItem("token");
+  
+  const decodedToken = jwtDecode(check);
+  console.log("decodedToken from add book", decodedToken);
   const {
     handleSubmit,
     control,

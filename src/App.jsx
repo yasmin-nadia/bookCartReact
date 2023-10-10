@@ -17,7 +17,9 @@ import DebounceDemo from "./pages/deboundsdemo";
 import FetchUserPost from "./pages/addUser";
 import ProductDetails from "./pages/productsDetailPage";
 import Login from "./pages/login";
+import LoginAdmin from "./pages/loginAdmin";
 import Authenticate from "./pages/authenticate";
+import Authenticateadmin from "./pages/authenticateadmin";
 import UserList from "./pages/userList";
 import Blog from "./pages/blogs";
 import CartList from "./pages/showCart";
@@ -155,19 +157,24 @@ function App() {
         <Routes>
           <Route path="/search" element={<DebounceDemo />} />
           <Route path="/" element={<FetchDemo />} />
-          <Route path="/userlist" element={<UserList />} />
+          
           <Route path="/userdetails" element={<Blog />} />
-          <Route element={<Authenticate />}>
+          <Route element={<Authenticateadmin />}>
+          <Route path="/userlist" element={<UserList />} />
             <Route path="/createbook" element={<FetchPost />} />
             <Route path="/updatebook" element={<FetchUpdate />} />
             <Route path="/createuser" element={<FetchUserPost />} />
             <Route path="/deletebook" element={<FetchDelete />} />
-            <Route path="/cart" element={<CartList />} />
+            
+          </Route>
+          <Route element={<Authenticate />}>
+          <Route path="/cart" element={<CartList />} />
             <Route path="/showcheckout" element={<ShowCheckout />} />
             <Route path="/showtransaction" element={<ShowTranList />} />
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login/user" element={<Login />} />
+          <Route path="/login/admin" element={<LoginAdmin />} />
         </Routes>
         <Footer />
       </BrowserRouter>

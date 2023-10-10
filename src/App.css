@@ -184,21 +184,78 @@ h3 {
 .checkout-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  justify-content: center; /* Center vertically */
-  height: 100vh; /* Make the container fill the entire viewport height */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5f5f5; /* Set a background color for the container */
+}
+
+/* Styles for the transaction card */
+.transaction-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  max-width: 400px; /* Adjust the width as needed */
+  text-align: center;
 }
 
 /* Styles for the title */
 .checkout-title {
   font-size: 24px;
   font-weight: bold;
-  color: #333; /* Change to your desired text color */
+  color: #333;
   margin-bottom: 20px;
 }
+
+/* Styles for individual transaction data */
+.transaction-data {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Style for the total amount */
+.transaction-total {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 20px 0;
+}
+
 
 /* Styles for the message */
 .checkout-message {
   font-size: 18px;
   color: #666; /* Change to your desired text color */
 }
+/* Add these styles to your CSS file */
+.header-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.header-dropdown:hover .dropdown-content {
+  display: block;
+}
+

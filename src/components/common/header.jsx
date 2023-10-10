@@ -1,9 +1,15 @@
 import React from "react";
+import { useState ,useEffect} from "react"; 
 import { Link } from "react-router-dom";
 import Button from "./button";
 import "../../app.css";
 
 const Header = () => {
+  const [showLoginOptions, setShowLoginOptions] = useState(false);
+
+  const toggleLoginOptions = () => {
+    setShowLoginOptions(!showLoginOptions);
+  };
   return (
     <div className="header-container">
       <img
@@ -17,10 +23,20 @@ const Header = () => {
           HOME
         </Link>
       </div>
-      <div>
-        <Link to="/login" className="header-link">
-          Login
-        </Link>
+      <div className="header-dropdown">
+        <div className="header-link" onClick={toggleLoginOptions}>
+          Login &#9662;
+        </div>
+        {showLoginOptions && (
+          <div className="dropdown-content">
+            <Link to="/login/admin" className="header-link">
+              Login as Admin
+            </Link>
+            <Link to="/login/user" className="header-link">
+              Login as User
+            </Link>
+          </div>
+        )}
       </div>
       <div>
         <Link to="/search" className="header-link">
