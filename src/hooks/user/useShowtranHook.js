@@ -1,33 +1,64 @@
-// useShowtranHook.js
-import { useState } from "react"; // Import useState if not already imported
+import { useState ,useEffect} from "react"; 
 import axiosInstance from "../../utils/axiosInstance";
 const check = localStorage.getItem("token");
+
 
 const useShowtranHook = () => {
   const [loading_one, setLoading] = useState(false);
   const [responseData, setResponseData] = useState("");
-  console.log("check", check);
+  const check = localStorage.getItem("token");
+
   const createTransaction = () => {
-    axiosInstance
-      .get(
-        "/showtransaction",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${check}`,
-          },
-        }
-      )
-      .then((response) => response.data)
-      .then((data) => {
-        setLoading(false);
-        console.log("responseData from hook success", data);
+    if (!check) {
+      console.log("Token not found in localStorage");
+      return;
+    }
+    console.log("useeffect ekbar kaj korlo")
+    fetch(`http://127.0.0.1:8001/mybooks//showtransaction`, {
+      method: "GET",
+     
+      headers: {
+        Authorization: `Bearer ${check}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.data.Transaction);
+        setResponseData(json.data.Transaction);
       })
-      .catch((error) => {
-        setLoading(false);
-        console.log("responseData from hook error");
-      });
+      .catch((err) => console.log(err));
+
+    // axiosInstance
+    //   .get(
+    //     "/showtransaction",
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${check}`,
+    //       },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       return response.data;
+    //     } else {
+    //       throw new Error("Unauthorized access");
+    //     }
+    //   })
+    //   .then((data) => {
+    //     setLoading(false);
+    //     console.log("responseData from hook success", data);
+    //     setResponseData(data.data.transaction);
+    //   })
+    //   .catch((error) => {
+    //     setLoading(false);
+    //     console.error("Error from hook", error);
+    
+    //   });
   };
+  useEffect(() => {
+    console.log("useeffect duibar kaj korlo")
+    createTransaction();
+  }, []);
 
   return {
     createTransaction,
@@ -35,5 +66,6 @@ const useShowtranHook = () => {
     responseData,
   };
 };
+
 
 export default useShowtranHook;
