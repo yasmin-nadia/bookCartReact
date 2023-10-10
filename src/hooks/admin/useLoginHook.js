@@ -7,7 +7,7 @@ const useLoginHook = () => {
   const [loading, setLoading] = useState(false);
   // const [responseData, setResponseData] = useState();
   const navigate = useNavigate();
-  const { setResponseData,responseData} = useAuth();
+  const { setResponseData,responseData,setIsLoggedIn} = useAuth();
   const createLogin = (formData) => {
     setLoading(true);
     console.log("formData", formData);
@@ -18,6 +18,7 @@ const useLoginHook = () => {
         setLoading(false);
         if (data.success) {
           const token = data.data.token;
+          setIsLoggedIn(true);
           // localStorage.setItem("token", token);
         }
 
@@ -30,8 +31,13 @@ const useLoginHook = () => {
       })
       .finally(() => {
         // Always navigate, whether success or failure
-        console.log("Navigating to /userloggedin",responseData);
-        navigate("/userloggedin");
+        if (data.success) {
+          navigate("/u");
+        }else{
+          console.log("Navigating to /userloggedin",responseData);
+          navigate("/userloggedin");
+        }
+        
       });
   };
 

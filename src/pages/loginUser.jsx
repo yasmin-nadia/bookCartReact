@@ -10,8 +10,9 @@ const Userloggedin = () => {
     const { responseData } = useAuth(); 
     console.log("responseData",responseData,"responseData")
   return (
-    <div>
-     {responseData}
+    <div className="checkout-container">
+      <h1 className="checkout-title">Login Status</h1>
+      {responseData && <p className="checkout-message">{responseData}</p>}
     </div>
   );
 };

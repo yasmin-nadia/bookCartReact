@@ -7,6 +7,7 @@ import Adminnavbar from "./components/admin/adminnavbar";
 // import Carddata from "./components/carddata";
 import "./App.css";
 import { AuthProvider } from "./pages/AuthContext"; 
+import { useAuth } from "./pages/AuthContext";
 // import Addtocart from "./components/addtocart";
 // import Showcart from "./components/showcart";
 // import Cardcomponent from "./components/card";
@@ -49,6 +50,7 @@ import Userloggedin from "./pages/loginUser";
 // };
 
 function App() {
+  const { responseData, setResponseData ,isLoggedIn,setIsLoggedIn } = useAuth();
   // const [currentIndex, setCurrentIndex] = useState(0);
   // const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // const [cart, setCart] = useState([]);
@@ -156,9 +158,11 @@ function App() {
     
       {isCartVisible && <Showcart cart={cart} calculateTotalPrice={calculateTotalPrice} />}
     <AddBookPage onAddBook={addBook} newBook={newBook} setNewBook={setNewBook}/>  */}
+   
       <BrowserRouter>
-        <Header />
-        <AuthProvider>
+      <AuthProvider>
+      {isLoggedIn ? <Usernavbar /> : <Header />}
+      
       <Routes>
         
           <Route path="/search" element={<DebounceDemo />} />
@@ -188,9 +192,13 @@ function App() {
           <Route path="/login/admin" element={<LoginAdmin />} />
           
           </Routes>
-    </AuthProvider>
-        <Footer />
+    
+        
+        
+
+        </AuthProvider>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
