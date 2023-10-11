@@ -4,9 +4,11 @@ import Header from "./components/common/header";
 import Footer from "./components/common/footer";
 import Usernavbar from "./components/user/usernavbar";
 import Adminnavbar from "./components/admin/adminnavbar";
+import Logout from "./pages/logout";
+import Button from "./components/common/button";
 // import Carddata from "./components/carddata";
 import "./App.css";
-import { AuthProvider } from "./pages/AuthContext"; 
+import { AuthProvider } from "./pages/AuthContext";
 import { useAuth } from "./pages/AuthContext";
 // import Addtocart from "./components/addtocart";
 // import Showcart from "./components/showcart";
@@ -30,173 +32,73 @@ import CartList from "./pages/showCart";
 import ShowCheckout from "./pages/checkout";
 import ShowTranList from "./pages/showtransaction";
 import Userloggedin from "./pages/loginUser";
-// const buttonContainerStyles = {
-//   display: "flex",
-//   justifyContent: "center",
-//   marginTop: "20px",
-//   backgroundColor: "#996633"
-// };
-// console.log("carddata", Carddata)
+import UpdatePost from "./pages/updateuser";
+import DeletePost from "./pages/deleteuser";
+import { useDispatch } from "react-redux";
+import { login } from "./redux/slices/lognslice";
 
-// const buttonStyles = {
-//   margin: "0 10px",
-//   padding: "10px 20px",
-//   backgroundColor: "#996633",
-
-//   color: "white",
-//   border: "2px solid #734d26",
-//   cursor: "pointer",
-//   borderRadius:"5px"
-// };
+import FetchUsers from "./pages/showalluser";
 
 function App() {
-  const { responseData, setResponseData ,isLoggedIn,setIsLoggedIn } = useAuth();
-  // const [currentIndex, setCurrentIndex] = useState(0);
-  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  // const [cart, setCart] = useState([]);
-  // const [isCartVisible, setIsCartVisible] = useState(false);
-  // const [books, setBooks] = useState(Carddata);
-  // const [newBook, setNewBook] = useState({
-  //   title: "",
-  //   author: "",
-  //   price: 0,
-  //   stock: 0,
-  //   image: [],
-  //   description: "",
-  //   genre: "",
-  // });
+  // const role = localStorage.getItem("logindata");
+  const [role, setRole] = useState(localStorage.getItem("logindata"));
+  const handleLogout = () => {
+    localStorage.removeItem("logindata");
+    localStorage.removeItem("token");
+    localStorage.removeItem("responseData");
+    console.log("handlelogout working");
+    navigate("/");
+  };
+  const dispatch = useDispatch();
 
-  // const addBook = () => {
-  //   const updatedBooks = [...books, newBook];
-  //   setBooks(updatedBooks);
-  //   console.log(updatedBooks)
-  // };
-
-  // const handleNextClick = () => {
-  //   setCurrentIndex((prevIndex) => (prevIndex + 1) % books.length);
-  // };
-  // const handlePrevClick = () => {
-  //   setCurrentIndex((prevIndex) =>
-  //     prevIndex === 0 ? books.length - 1 : prevIndex - 1
-  //   );
-  // };
-  // const handleNextImageClick = () => {
-  //   setCurrentImageIndex((prevIndex) =>
-  //     (prevIndex + 1) % books[currentIndex].image.length
-  //   );
-  // };
-  // const handleAddToCart = () => {
-  //   const selectedBook = books[currentIndex];
-  //   const existingCartItem = cart.find((cartItem) => cartItem.item.title === selectedBook.title);
-
-  //   if (existingCartItem) {
-  //     existingCartItem.quantity += 1;
-  //     setCart([...cart]);
-  //   } else {
-  //     setCart([...cart, { item: selectedBook, quantity: 1 }]);
-  //   }
-  // };
-
-  // const handleRemoveFromCart = () => {
-  //   const selectedBook = books[currentIndex];
-  //   const existingCartItem = cart.find((cartItem) => cartItem.item.title === selectedBook.title);
-
-  //   if (existingCartItem) {
-  //     if (existingCartItem.quantity === 1) {
-  //       // Remove the item from the cart if its quantity is 1
-  //       const updatedCart = cart.filter((cartItem) => cartItem.item.title !== selectedBook.title);
-  //       setCart(updatedCart);
-  //     } else {
-  //       // Decrease the quantity by 1 if it's greater than 1
-  //       existingCartItem.quantity -= 1;
-  //       setCart([...cart]);
-  //     }
-  //   }
-  // };
-
-  // const handleToggleCart = (e) => {
-  //   e.stopPropagation();
-  //   alert("Cart is toggled!");
-  //   setIsCartVisible(!isCartVisible);
-  // };
-  // const calculateTotalPrice = () => {
-  //   return cart.reduce((total, cartItem) => {
-  //     return total + cartItem.item.price * cartItem.quantity;
-  //   }, 0);
-  // };
-
-  // const currentCard = books[currentIndex];
-  // const currentImage = currentCard.image[currentImageIndex].toString();
-  // console.log("currentCard.title",currentCard.title,"currentImage",currentImage)
+  useEffect(() => {
+    setRole(localStorage.getItem("logindata"));
+    if (role) {
+      dispatch(login(role));
+    }
+  }, [dispatch]);
+  // const role = localStorage.getItem("logindata");
 
   return (
     <div>
-      {/* <div style={buttonContainerStyles}>
-        <button style={buttonStyles} onClick={handleNextClick}>Next</button>
-
-        <button style={buttonStyles} onClick={handlePrevClick}>Prev</button>
-        <button style={buttonStyles} onClick={handleNextImageClick}>Next Image</button>
-        <button style={buttonStyles} onClick={handleAddToCart}>Add to Cart</button>
-        <button style={buttonStyles} onClick={handleRemoveFromCart}>Remove from Cart</button>
-        <button style={buttonStyles} onClick={handleToggleCart}>View Cart</button>
-       
-      </div>
-      <div> {currentCard && (
-        <div key={currentCard.title}>
-          <Cardcomponent
-            title={currentCard.title}
-            author={currentCard.author}
-            price={currentCard.price}
-            stock={currentCard.stock}
-            genre={currentCard.genre}
-            description={currentCard.description}
-            image={currentImage}
-
-          />
-        </div>
-      )}</div>
-    
-      {isCartVisible && <Showcart cart={cart} calculateTotalPrice={calculateTotalPrice} />}
-    <AddBookPage onAddBook={addBook} newBook={newBook} setNewBook={setNewBook}/>  */}
-   
       <BrowserRouter>
-      <AuthProvider>
-      {isLoggedIn ? <Usernavbar /> : <Header />}
-      
-      <Routes>
-        
+        {/* <AuthProvider> */}
+        {/* {role === "user" ? <Usernavbar /> : <Header />} */}
+        {role === "user" ? <Usernavbar /> : null}
+        {role === "admin" ? <Adminnavbar /> : null}
+        {role !== "user" && role !== "admin" ? <Header /> : null}
+        {/* <Header /> */}
+
+        <Routes>
           <Route path="/search" element={<DebounceDemo />} />
           <Route path="/" element={<FetchDemo />} />
-          
+
           <Route path="/userdetails" element={<Blog />} />
           <Route element={<Authenticateadmin />}>
-          <Route path="/userlist" element={<UserList />} />
+            <Route path="/userlist" element={<UserList />} />
             <Route path="/createbook" element={<FetchPost />} />
             <Route path="/updatebook" element={<FetchUpdate />} />
             <Route path="/createuser" element={<FetchUserPost />} />
+            <Route path="/updateuser" element={<UpdatePost />} />
             <Route path="/deletebook" element={<FetchDelete />} />
-            
+            <Route path="/alltheusers" element={<FetchUsers />} />
+            <Route path="/deleteuser" element={<DeletePost />} />
           </Route>
           <Route element={<Authenticate />}>
-          <Route path="/cart" element={<CartList />} />
+            <Route path="/cart" element={<CartList />} />
             <Route path="/showcheckout" element={<ShowCheckout />} />
             <Route path="/showtransaction" element={<ShowTranList />} />
-            
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
-        
-        <Route path="/userloggedin" element={<Userloggedin />} />
-        <Route path="/login/user" element={<Login />} />
-     
-      
-          <Route path="/login/admin" element={<LoginAdmin />} />
-          
-          </Routes>
-    
-        
-        
 
-        </AuthProvider>
+          <Route path="/userloggedin" element={<Userloggedin />} />
+          <Route path="/login/user" element={<Login />} />
+          <Route path="/logout/user" element={<Logout />} />
+          <Route path="/login/admin" element={<LoginAdmin />} />
+          <Route path="/logout/admin" element={<Logout />} />
+        </Routes>
+
+        {/* </AuthProvider> */}
       </BrowserRouter>
       <Footer />
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import { useState ,useEffect} from "react"; 
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
+import Button from "../common/button";
 import "../../app.css";
 
 const Usernavbar = () => {
@@ -48,8 +48,11 @@ const Usernavbar = () => {
           Show transaction
         </Link>
       </div>
-
-      
+      <div>
+        <Link to="/logout/user" className="header-link">
+          Logout
+        </Link>
+      </div>
     </div>
   );
 };

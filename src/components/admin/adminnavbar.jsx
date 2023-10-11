@@ -1,6 +1,7 @@
 import React from "react";
-import { useState ,useEffect} from "react"; 
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Button from "../common/button";
 import "../../app.css";
 
 const Adminnavbar = () => {
@@ -67,7 +68,16 @@ const Adminnavbar = () => {
           Show user
         </Link>
       </div>
-      
+      <div>
+        <Link to="/logout/admin" className="header-link">
+          Logout
+        </Link>
+      </div>
+      <div>
+        <Link to="/alltheusers" className="header-link">
+          Show all users
+        </Link>
+      </div>
     </div>
   );
 };

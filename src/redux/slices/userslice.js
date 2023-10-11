@@ -8,6 +8,7 @@ const userSlice = createSlice({
   reducers: {
     addUser: (state, action) => {
       state.users.push({ id: Date.now(), text: action.payload });
+      state.role = action.payload;
     },
   },
 });

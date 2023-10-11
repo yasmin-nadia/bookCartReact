@@ -1,13 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../pages/AuthContext"; 
+import { useAuth } from "../../pages/AuthContext";
 import axiosInstance from "../../utils/axiosInstance";
-
+import { login } from "../../redux/slices/lognslice";
+import { useSelector, useDispatch } from "react-redux";
 const useLoginHook = () => {
   const [loading, setLoading] = useState(false);
-  // const [responseData, setResponseData] = useState();
+  const [responseData, setResponseData] = useState();
+  // const [logindata, setIsLoggedIn] = useState();
   const navigate = useNavigate();
-  const { setResponseData,responseData,setIsLoggedIn} = useAuth();
+  const dispatch = useDispatch();
   const createLogin = (formData) => {
     setLoading(true);
     console.log("formData", formData);
@@ -18,12 +20,17 @@ const useLoginHook = () => {
         setLoading(false);
         if (data.success) {
           const token = data.data.token;
-          setIsLoggedIn(true);
-          // localStorage.setItem("token", token);
-        }
+          // setIsLoggedIn(true);
 
-        console.log("Successfully logged in:", data.message);
-        setResponseData(data.message);
+          localStorage.setItem("logindata", data.data.role);
+          localStorage.setItem("token", token);
+          dispatch(login(data.data.role));
+        }
+        // setResponseData(data.message);
+        console.log("Successfully logged in:", data);
+        localStorage.setItem("responseData", data.message);
+        // localStorage.setItem("responseData", responseData);
+        // console.log("responseData login", responseData);
       })
       .catch((error) => {
         setLoading(false);
@@ -31,16 +38,16 @@ const useLoginHook = () => {
       })
       .finally(() => {
         // Always navigate, whether success or failure
-        if (data.success) {
-          navigate("/u");
-        }else{
-          console.log("Navigating to /userloggedin",responseData);
-          navigate("/userloggedin");
-        }
-        
+        // if (data && data.success) {
+        //   navigate("/u");
+        // } else {
+        console.log("Navigating to /userloggedin", responseData);
+        navigate("/userloggedin");
+        // }
       });
   };
 
   return { createLogin, loading };
 };
+
 export default useLoginHook;

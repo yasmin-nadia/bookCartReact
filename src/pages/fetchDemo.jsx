@@ -9,7 +9,7 @@ const FetchDemo = () => {
   useEffect(() => {
     console.log("From FetchDemo", productData);
   }, [productData]);
-
+  console.log(" coproductData", productData);
   const navigate = useNavigate();
 
   return (

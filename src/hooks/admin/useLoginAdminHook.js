@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
-
+import { login } from "../../redux/slices/lognslice";
 const useLoginAdminHook = () => {
   const [loading, setLoading] = useState(false);
-
+  const dispatch = useDispatch();
   const createLogin = (formData) => {
     setLoading(true);
     console.log("formData", formData);
@@ -13,10 +13,17 @@ const useLoginAdminHook = () => {
       .then((response) => response.data)
       .then((data) => {
         setLoading(false);
-        const token = data.data.token;
-        localStorage.setItem("token", token);
+        if (data.success) {
+          const token = data.data.token;
+          // setIsLoggedIn(true);
 
-        console.log("Successfully logged in:", data.data.token);
+          localStorage.setItem("logindata", data.data.role);
+          localStorage.setItem("token", token);
+          dispatch(login(data.data.role));
+        }
+
+        console.log("Successfully logged in:", data);
+        localStorage.setItem("responseData", data.message);
         return data;
       })
       .catch((error) => {
