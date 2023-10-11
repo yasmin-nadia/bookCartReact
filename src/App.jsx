@@ -35,6 +35,8 @@ import Userloggedin from "./pages/loginUser";
 import UpdatePost from "./pages/updateuser";
 import DeletePost from "./pages/deleteuser";
 import ShowSelfInfo from "./pages/showselfinfo";
+import Addbalance from "./pages/addbalance";
+import ShowCartList from "./pages/showallcart"
 import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/lognslice";
 
@@ -89,6 +91,8 @@ function App() {
             <Route path="/cart" element={<CartList />} />
             <Route path="/showcheckout" element={<ShowCheckout />} />
             <Route path="/showtransaction" element={<ShowTranList />} />
+            
+            <Route path="/addbalance" element={<Addbalance />} />
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
 
@@ -99,6 +103,8 @@ function App() {
           <Route path="/logout/admin" element={<Logout />} />
 
           <Route path="/showselfinfo" element={<ShowSelfInfo />} />
+          <Route path="/showselfcart" element={<ShowCartList />} />
+          
         </Routes>
 
         {/* </AuthProvider> */}

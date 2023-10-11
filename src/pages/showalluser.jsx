@@ -53,12 +53,7 @@ const FetchUsers = () => {
                 >
                   delete
                 </button>
-                {/* <button
-                  className="add-to-cart-button"
-                  // onClick={handleaddbalance}
-                >
-                  Add balance
-                </button> */}
+                
               </div>
             </div>
           ))}

@@ -43,11 +43,7 @@ const Usernavbar = () => {
           Search
         </Link>
       </div>
-      <div>
-        <Link to="/showtransaction" className="header-link">
-          Show transaction
-        </Link>
-      </div>
+     
       <div>
         <Link to="/showselfinfo" className="header-link">
           Account Info
