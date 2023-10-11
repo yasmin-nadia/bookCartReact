@@ -34,6 +34,7 @@ import ShowTranList from "./pages/showtransaction";
 import Userloggedin from "./pages/loginUser";
 import UpdatePost from "./pages/updateuser";
 import DeletePost from "./pages/deleteuser";
+import ShowSelfInfo from "./pages/showselfinfo";
 import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/lognslice";
 
@@ -96,6 +97,8 @@ function App() {
           <Route path="/logout/user" element={<Logout />} />
           <Route path="/login/admin" element={<LoginAdmin />} />
           <Route path="/logout/admin" element={<Logout />} />
+
+          <Route path="/showselfinfo" element={<ShowSelfInfo />} />
         </Routes>
 
         {/* </AuthProvider> */}

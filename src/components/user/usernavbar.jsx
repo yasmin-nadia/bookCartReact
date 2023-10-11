@@ -49,7 +49,7 @@ const Usernavbar = () => {
         </Link>
       </div>
       <div>
-        <Link to="/accountinfo" className="header-link">
+        <Link to="/showselfinfo" className="header-link">
           Account Info
         </Link>
       </div>
