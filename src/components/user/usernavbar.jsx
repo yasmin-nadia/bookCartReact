@@ -49,6 +49,11 @@ const Usernavbar = () => {
         </Link>
       </div>
       <div>
+        <Link to="/accountinfo" className="header-link">
+          Account Info
+        </Link>
+      </div>
+      <div>
         <Link to="/logout/user" className="header-link">
           Logout
         </Link>

@@ -14,10 +14,9 @@ const useDeleteHook = () => {
   };
 
   const deletePost = (formData) => {
-    axiosInstance.delete("/deleteuser", formData, axiosConfig);
     setLoading(true);
     axiosInstance
-      .delete(axiosConfig, formData)
+      .delete("/deleteuser", { data: formData })
       .then((response) => response.data)
       .then((data) => {
         setLoading(false);

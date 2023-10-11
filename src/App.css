@@ -156,7 +156,7 @@ h3 {
   border: none;
   border-radius: 5px;
   padding: 12px 24px; /* Larger button */
-  font-size: 18px; /* Larger button text */
+  font-size: 14px; /* Larger button text */
   cursor: pointer;
   margin-top: 20px;
   margin-right: 2px;
@@ -175,6 +175,7 @@ h3 {
   justify-content: space-between; 
   align-items: center;
   padding: 2px;
+
 }
 /* app.css */
 
