@@ -1,7 +1,10 @@
 import react, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import useProductUpdateHook from "../hooks/admin/userProductUpdate";
 const FetchUpdate = () => {
-  const { createUpdate, loading } = useProductUpdateHook();
+
+  const { title } = useParams();
+  const { createUpdate, loading } = useProductUpdateHook(title);
   const [productTitle, setProductTitle] = useState("");
   const [productDes, setProductDes] = useState("");
   const [productAuth, setProductAuth] = useState("");

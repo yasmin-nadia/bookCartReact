@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "../../utils/axiosInstance";
-const useProductDeleteHook = () => {
+const useProductDeleteHook = (title) => {
   const [loading, setLoading] = useState(false);
-
+// // .post(`/addrate?bookId=${bookId}`, formData)
   const createDelete = (formData) => {
     setLoading(true);
     axiosInstance
-      .delete("/deletebook", { data: formData })
+      .delete(`/deletebook?title=${title}` ,{ data: formData })
       .then((response) => response.data)
       .then((data) => {
         setLoading(false);

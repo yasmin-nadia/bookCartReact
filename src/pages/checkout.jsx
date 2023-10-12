@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import useCheckoutHook from "../hooks/user/useCheckoutHook";
 import { useEffect } from "react";
-import "../App.css";
+import "../App.scss";
 
 function ShowCheckout() {
   const { responseData } = useCheckoutHook();

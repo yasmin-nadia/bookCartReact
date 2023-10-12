@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import useSortProductHook from "../hooks/common/useSortProductHook";
-import "../App.css";
+import "../App.scss";
 
 const Sort = () => {
   const [sortingOption, setSortingOption] = useState("default");
@@ -10,17 +10,18 @@ const Sort = () => {
   const [order, setOrder] = useState("");
   const [sortField2, setSortField2] = useState("");
   const [order2, setOrder2] = useState("");
-  const [productData, setProductData] = useState([]);
-  const [loading, setLoading] = useState(false);
+//   const [productData, setProductData] = useState([]);
+//   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  if (sortField && order) {
-    const { productData, loading } = useSortProductHook(order, sortField);
-    if (sortField && order) {
-        const { productData, loading } = useSortProductHook(order, sortField);
-        setProductData(productData);
-        setLoading(loading);
-      }
-  }
+  const { productData, loading,createPost } = useSortProductHook(order, sortField);
+//   if (sortField && order) {
+//     const { productData, loading } = useSortProductHook(order, sortField);
+//     if (sortField && order) {
+//         const { productData, loading } = useSortProductHook(order, sortField);
+//         setProductData(productData);
+//         setLoading(loading);
+//       }
+//   }
   const handleSortingChange = (event) => {
    
     setSortingOption(event.target.value);
@@ -35,12 +36,13 @@ const Sort = () => {
     setSortField(event.target.value);
   };
 
-  const handleSortSubmit = () => {
+  useEffect(() => {
     if (sortField && order) {
-        setSortField2(sortField)
-        setOrder2(order)
+     
+      createPost()
+      
     }
-  };
+  }, [sortField, order]);
 
   console.log("productData", productData);
 
@@ -61,14 +63,12 @@ const Sort = () => {
           value={sortField}
           onChange={handleSortFieldChange}
         >
-          <option value="default">Sort by</option>
+         
           <option value="price">Price</option>
           <option value="stock">Stock</option>
           <option value="title">Title</option>
         </select>
-        <button className="header-link-two" onClick={handleSortSubmit}>
-          Submit
-        </button>
+       
       </div>
       
       <div className="show-product-detail">
@@ -78,7 +78,7 @@ const Sort = () => {
               <div className="product-grid-two">
                 {productData.map((product) => (
                   <div className="product-item" key={product._id}>
-                    <img src={product.image[0]} style={{ width: "200px", height: "200px" }} />
+                    {/* <img src={product.image[0]} style={{ width: "200px", height: "200px" }} /> */}
             <h4>Product Title: {product.title}</h4>
             <p>Author: {product.author}</p>
             <p>Price: ${product.price}</p>

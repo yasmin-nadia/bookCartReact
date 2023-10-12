@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useSortProductHook from "../hooks/common/useSortProductHook";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
+import "../App.scss";
 
 const FetchSortBook = () => {
   const { productData, loading } = useSortProductHook();

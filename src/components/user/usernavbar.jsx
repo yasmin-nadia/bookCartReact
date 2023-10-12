@@ -2,7 +2,7 @@ import React, { useState ,useEffect} from "react";
 import { Link ,useNavigate} from "react-router-dom";
 
 import useSortProductHook from "../../hooks/common/useSortProductHook";
-import "../../app.css";
+import "../../app.scss";
 
 const Usernavbar = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
@@ -54,6 +54,11 @@ const Usernavbar = () => {
       <div>
         <Link to="/showselfinfo" className="header-link">
           Account Info
+        </Link>
+      </div>
+      <div>
+        <Link to="/filter" className="header-link">
+          Filter
         </Link>
       </div>
       <div>

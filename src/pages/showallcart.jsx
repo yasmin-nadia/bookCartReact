@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import useShowCartHook from "../hooks/user/useShowCartHook"
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import "../App.css";
+import "../App.scss";
 
 const ShowCartList = () => {
   const {showCart,

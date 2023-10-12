@@ -6,15 +6,12 @@ import Usernavbar from "./components/user/usernavbar";
 import Adminnavbar from "./components/admin/adminnavbar";
 import Logout from "./pages/logout";
 import Button from "./components/common/button";
-// import Carddata from "./components/carddata";
-import "./App.css";
+import Filter from "./pages/filter"
+
+import "./App.scss";
 import { AuthProvider } from "./pages/AuthContext";
 import { useAuth } from "./pages/AuthContext";
-// import Addtocart from "./components/addtocart";
-// import Showcart from "./components/showcart";
-// import Cardcomponent from "./components/card";
-// import Addbookform from "./pages/addbook";
-// import AddBookPage from "./pages/addbookpage";
+
 import FetchDemo from "./pages/fetchDemo";
 import FetchPost from "./pages/fetchPost";
 import FetchUpdate from "./pages/fetchUpdate";
@@ -27,7 +24,7 @@ import LoginAdmin from "./pages/loginAdmin";
 import Authenticate from "./pages/authenticate";
 import Authenticateadmin from "./pages/authenticateadmin";
 import UserList from "./pages/userList";
-import Blog from "./pages/blogs";
+// import Blog from "./pages/blogs";
 import CartList from "./pages/showCart";
 import ShowCheckout from "./pages/checkout";
 import ShowTranList from "./pages/showtransaction";
@@ -37,7 +34,14 @@ import DeletePost from "./pages/deleteuser";
 import ShowSelfInfo from "./pages/showselfinfo";
 import Addbalance from "./pages/addbalance";
 import ShowCartList from "./pages/showallcart"
+import Rate from "./pages/rate"
+import Review from "./pages/review"
 import Sort from "./pages/sort"
+import Adddiscount from "./pages/adddiscount";
+//Updatediscount
+import Updatediscount from "./pages/updatediscount.jsx";
+// Showtransaction
+import Showtransaction from "./pages/showtransaction.jsx";
 import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/lognslice";
 
@@ -77,16 +81,20 @@ function App() {
           <Route path="/search" element={<DebounceDemo />} />
           <Route path="/" element={<FetchDemo />} />
           <Route path="/sort" element={<Sort />} />
-          <Route path="/userdetails" element={<Blog />} />
+          <Route path="/filter" element={<Filter />} />
           <Route element={<Authenticateadmin />}>
             <Route path="/userlist" element={<UserList />} />
             <Route path="/createbook" element={<FetchPost />} />
-            <Route path="/updatebook" element={<FetchUpdate />} />
+            <Route path="/updatebook/:title" element={<FetchUpdate />} />
             <Route path="/createuser" element={<FetchUserPost />} />
             <Route path="/updateuser" element={<UpdatePost />} />
-            <Route path="/deletebook" element={<FetchDelete />} />
+            <Route path="/deletebook/:title" element={<FetchDelete />} />
             <Route path="/alltheusers" element={<FetchUsers />} />
             <Route path="/deleteuser" element={<DeletePost />} />
+            <Route path="adddiscount/:bookId" element={<Adddiscount />} />
+            <Route path="updatediscount" element={<Updatediscount />} />
+    
+            <Route path="showtransaction" element={<Showtransaction />} />
           </Route>
           <Route element={<Authenticate />}>
             <Route path="/cart" element={<CartList />} />
@@ -96,6 +104,8 @@ function App() {
             <Route path="/addbalance" element={<Addbalance />} />
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
+          <Route path="/rate/:bookId" element={<Rate />} />
+          <Route path="/review/:bookId" element={<Review />} />
 
           <Route path="/userloggedin" element={<Userloggedin />} />
           <Route path="/login/user" element={<Login />} />

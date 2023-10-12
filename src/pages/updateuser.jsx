@@ -124,7 +124,7 @@ const UpdatePost = () => {
                     value >= 20 || "Area must be greater than or equal to 20"
                   );
                 }
-                return true; // Optional field, no validation if empty
+                return true; 
               },
             }}
             render={({ field }) => (
@@ -151,7 +151,7 @@ const UpdatePost = () => {
                     "Street address must be between 5 and 20 characters"
                   );
                 }
-                return true; // Optional field, no validation if empty
+                return true; 
               },
             }}
             render={({ field }) => (
@@ -186,7 +186,7 @@ const UpdatePost = () => {
                     validPrefixes.includes(value.substr(0, 3));
                   return isValid || "Invalid phone number format";
                 }
-                return true; // Optional field, no validation if empty
+                return true;
               },
             }}
             render={({ field }) => (

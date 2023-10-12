@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 
-const useSortProductHook = (order, sortField) => {
+const useFilterProductHook = () => {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const createPost = () => {
+  const createPost = (discountData) => {
     setLoading(true);
+    console.log("discountData",discountData.discountData)
     axiosInstance
-      .get(`/getbook?order=${order}&sortField=${sortField}`)
+      .get("/getbook", {
+        params: discountData.discountData, 
+      })
       .then((resp) => resp.data)
       .then((data) => {
         setProductData(data.data);
@@ -22,4 +25,4 @@ const useSortProductHook = (order, sortField) => {
   return { productData, loading ,createPost};
 };
 
-export default useSortProductHook;
+export default useFilterProductHook;

@@ -1,7 +1,9 @@
 import react, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import useProductDeleteHook from "../hooks/admin/userProductDelete";
 const FetchDelete = () => {
-  const { createDelete, loading } = useProductDeleteHook();
+  const { title } = useParams();
+  const { createDelete, loading } = useProductDeleteHook(title);
   const [productTitle, setProductTitle] = useState("");
 
   const formStyles = {
@@ -51,26 +53,7 @@ const FetchDelete = () => {
       <h1>Delete product</h1>
       {loading === true && <h4>Loading...</h4>}
 
-      <form style={formStyles} onSubmit={handleDeleteSubmit}>
-        <div style={inputContainerStyles}>
-          <label style={labelStyles}>Title:</label>
-          <input
-            type="text"
-            label="title"
-            placeholder="input title"
-            onChange={(e) => setProductTitle(e.target.value)}
-            style={inputStyles}
-          />
-        </div>
-
-        <button
-          type="button"
-          onClick={handleDeleteSubmit}
-          style={submitButtonStyles}
-        >
-          Delete Book
-        </button>
-      </form>
+      
     </div>
   );
 };

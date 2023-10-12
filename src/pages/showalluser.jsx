@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import useUserHook from "../hooks/admin/useGetUserHook";
 import useUpdateHook from "../hooks/admin/useUpdateUserHook";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
+import "../App.scss";
 
 const FetchUsers = () => {
   const { userData, loading } = useUserHook();

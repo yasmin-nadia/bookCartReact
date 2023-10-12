@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../common/button";
-import "../../app.css";
+import "../../app.scss";
 
 const Adminnavbar = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
@@ -45,7 +45,7 @@ const Adminnavbar = () => {
       </div>
       <div>
         <Link to="/createuser" className="header-link">
-          Create new user
+          Add user
         </Link>
       </div>
       <div>
@@ -53,29 +53,41 @@ const Adminnavbar = () => {
           Add product
         </Link>
       </div>
-      <div>
-        <Link to="/updatebook" className="header-link">
-          Update product
-        </Link>
-      </div>
-      <div>
-        <Link to="/deletebook" className="header-link">
-          Delete product
-        </Link>
-      </div>
+      
       <div>
         <Link to="/userlist" className="header-link">
           Show user
         </Link>
       </div>
       <div>
+     
+        <Link to="/sort" className="header-link">
+          Sort
+        </Link>
+      </div>'
+      <div>'
         <Link to="/logout/admin" className="header-link">
           Logout
         </Link>
       </div>
       <div>
         <Link to="/alltheusers" className="header-link">
-          Show all users
+          Show users
+        </Link>
+      </div>
+      <div>
+        <Link to="/updatediscount" className="header-link">
+          Update discount
+        </Link>
+      </div>
+      <div>
+        <Link to="/filter" className="header-link">
+          Filter
+        </Link>
+      </div>
+      <div>
+        <Link to="/showtransaction" className="header-link">
+          Transactions
         </Link>
       </div>
     </div>

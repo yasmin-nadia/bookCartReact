@@ -1,25 +1,29 @@
 import { useState, useEffect, useContext } from "react";
 import axiosInstance from "../../utils/axiosInstance";
-const useProductUpdateHook = (title) => {
+const useAddDiscountHook = (bookId) => {
   const [loading, setLoading] = useState(false);
-// .post(`/addrate?bookId=${bookId}`, formData)
-  const createUpdate = (formData) => {
+
+  const createPost = (formData) => {
     setLoading(true);
     axiosInstance
-      .put(`/updatebook?title=${title}`, formData)
+    // .get(`/getbook?bookId=${productId}`)
+      .post(`/adddiscount?bookId=${bookId}`, formData)
       .then((response) => response.data)
       .then((data) => {
         setLoading(false);
-        console.log("Successfully Updated book:", data);
+        console.log("Successfully added to discpunt to book:", data);
         return data;
       })
       .catch((error) => {
         setLoading(false);
-        console.error("Error updating book:", error);
+        
         throw error;
       });
   };
-  return { createUpdate, loading };
+  
+ 
+  
+  return { createPost,loading };
 };
 
-export default useProductUpdateHook;
+export default useAddDiscountHook;

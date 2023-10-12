@@ -1,22 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import useProductHook from "../hooks/common/userProductHook";
 import { useNavigate } from "react-router-dom";
-import "../App.css";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import "../App.scss";
 
 const FetchDemo = () => {
   const { productData, loading } = useProductHook();
-
-  useEffect(() => {
-    console.log("From FetchDemo", productData);
-  }, [productData]);
-  console.log(" coproductData", productData);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 8;
+
+  // Handle previous page
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  // Handle next page
+  const handleNextPage = () => {
+    // Implement logic to determine if there are more products to show on the next page
+    // For now, we'll just increment the page number.
+    setCurrentPage(currentPage + 1);
+  };
+
+  // Check if productData is available and not loading
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const startIndex = (currentPage - 1) * productsPerPage;
+  const endIndex = startIndex + productsPerPage;
+  const productsToDisplay = productData.slice(startIndex, endIndex);
 
   return (
     <div className="fetch-demo-container">
       <h1>All Books</h1>
       <div className="product-grid">
-        {productData.map((product) => (
+        {productsToDisplay.map((product) => (
           <div className="product-item" key={product._id}>
             <h5>{product.title}</h5>
             <p>Author: {product.author}</p>
@@ -33,8 +54,15 @@ const FetchDemo = () => {
           </div>
         ))}
       </div>
+      <div className="pagination">
+        <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+          <FiChevronLeft /> Previous
+        </button>
+        <button onClick={handleNextPage}>
+          Next <FiChevronRight />
+        </button>
+      </div>
     </div>
   );
 };
-
 export default FetchDemo;

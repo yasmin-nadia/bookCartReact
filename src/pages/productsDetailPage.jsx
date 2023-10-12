@@ -9,7 +9,7 @@ const ProductDetails = () => {
   const { productId } = useParams();
   console.log(productId)
   const check = localStorage.getItem("token");
-  const { createPost } = useAddtocartHook();
+  const { createPost,deletePost } = useAddtocartHook();
   const { createCheckout, loading_one, responseData } = useCheckoutHook();
   console.log("productId", productId);
   const [quantity, setQuantity] = useState(1);
@@ -20,7 +20,7 @@ const ProductDetails = () => {
   const handleShowCart = () => {
     navigate("/cart");
   };
-
+ 
   useEffect(() => {
     console.log("useeffect working");
   }, [productId]);
@@ -45,8 +45,19 @@ const ProductDetails = () => {
         quantity: quantity,
       },
     };
-
+//deletePost
     dispatch(addToCart(payloadWithoutToken));
+  };
+  const handleDeleteFromCart = () => {
+    const payload = {
+      BookId: {
+        id: productData._id,
+        quantity: quantity,
+        token: check,
+      },
+    };
+    deletePost(payload);
+   
   };
   const handleCheckout = () => {
     createCheckout();
@@ -73,8 +84,10 @@ const ProductDetails = () => {
               <button className="add-to-cart-button" onClick={handleShowCart}>
                 Show Cart
               </button>
-              <button className="add-to-cart-button" onClick={handleAddToCart}>
-                Add to cart
+              <button className="add-to-cart-button"
+               onClick={handleDeleteFromCart}
+              >
+                -
               </button>
               <button className="add-to-cart-button" onClick={handleAddToCart}>
                 +
@@ -82,6 +95,27 @@ const ProductDetails = () => {
               <button className="add-to-cart-button" onClick={handleCheckout}>
                 Checkout
               </button>
+              <button
+                className="add-to-cart-button"
+                onClick={() => navigate(`/rate/${productData._id}`)}
+              >Rate
+
+              </button>
+              <button className="add-to-cart-button" onClick={() => navigate(`/review/${productData._id}`)}>
+                Review
+              </button>
+              <button className="add-to-cart-button" onClick={() => navigate(`/updatebook/${productData.title}`)}>
+                Update
+              </button>
+              <button className="add-to-cart-button" onClick={() => navigate(`/deletebook/${productData.title}`)}>
+                Delete
+              </button>
+              <button className="add-to-cart-button" 
+              onClick={() => navigate(`/adddiscount/${productData._id}`)}
+              >
+                Add discount
+              </button>
+
             </div>
           </div>
         </div>

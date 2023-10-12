@@ -19,7 +19,23 @@ const useAddtocartHook = () => {
         throw error;
       });
   };
-  return { createPost, loading };
+  const deletePost = (formData) => {
+    setLoading(true);
+    axiosInstance
+      .delete("/removefromcart", { data: formData })
+      .then((response) => response.data)
+      .then((data) => {
+        setLoading(false);
+        console.log("Successfully delete from cart:", data);
+        return data;
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error("Error deleting from to cart:", error);
+        throw error;
+      });
+  };
+  return { createPost,deletePost, loading };
 };
 
 export default useAddtocartHook;

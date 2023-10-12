@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./button";
-import "../../app.css";
+import "../../app.scss";
 
 const Header = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
@@ -44,6 +44,11 @@ const Header = () => {
         </Link>
       </div>
       <div>
+        <Link to="/sort" className="header-link">
+          Sort
+        </Link>
+      </div>
+      {/* <div>
         <Link to="/createuser" className="header-link">
           Create new user
         </Link>
@@ -62,8 +67,8 @@ const Header = () => {
         <Link to="/deletebook" className="header-link">
           Delete product
         </Link>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <Link to="/userlist" className="header-link">
           Show user
         </Link>
@@ -72,9 +77,14 @@ const Header = () => {
         <Link to="/showtransaction" className="header-link">
           Show transaction
         </Link>
-      </div>
+      </div> */}
 
       {/* <Button /> */}
+      <div>
+        <Link to="/filter" className="header-link">
+          Filter
+        </Link>
+      </div>
     </div>
   );
 };

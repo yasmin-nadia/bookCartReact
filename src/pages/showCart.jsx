@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import "../App.css";
+import "../App.scss";
 
 const CartList = () => {
   const carts = useSelector((state) => state.cart.cart_items);

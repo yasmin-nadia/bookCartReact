@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import useLoginHook from "../hooks/admin/useLoginHook";
 import { useAuth } from "./AuthContext";
 
-import "../App.css";
+import "../App.scss";
 
 const Userloggedin = () => {
   console.log("Userloggedin is working");

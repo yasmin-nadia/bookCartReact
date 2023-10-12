@@ -1,28 +1,38 @@
-import React, { useEffect } from "react";
-import useShowtranHook from "../hooks/user/useShowtranHook"; 
+import React, { useEffect,useState } from "react";
+import useShowTransaction from "../hooks/admin/useShowTransacttion";
+import { useNavigate } from "react-router-dom";
 
-import "../App.css";
-
-const ShowTranList = () => {
-  const { responseData } = useShowtranHook();
- 
+import "../App.scss";
+const Showtransaction = () => {
+  const { productData, loading } = useShowTransaction();
+  console.log("transactiondata", productData);
+ const check= localStorage.getItem("transactionData")
+const transactionData = check === null ? [] : JSON.parse(check);
   useEffect(() => {
-    console.log("responseData", responseData, "from jsx");
-  }, [responseData]);
+    
+    console.log("Product data changed:", productData);
+  }, [productData,loading]);
+ 
+console.log("transactionData",transactionData)
 
   return (
-    <div className="checkout-container">
-      <h1 className="checkout-title">Transaction Status</h1>
-      {responseData && (
-        <div className="transaction-card">
-          <p className="transaction-data">Cart ID: {responseData.cartId}</p>
-          <p className="transaction-data">User ID: {responseData.userId}</p>
-          <p className="transaction-data">Created: {responseData.created}</p>
-          <p className="transaction-total">Total: {responseData.total}</p>
-        </div>
-      )}
+    <div className="fetch-demo-container">
+      <h1>All Transaction</h1>
+      <div className="transaction-list">
+      {Array.isArray(transactionData.Transactions) ? (
+         transactionData.Transactions.map((transaction, index) => (
+            transaction.userId && (
+              <div className="transaction-item" key={index}>
+                <p>Name: {transaction.userId.name}</p>
+                <p>Total: {transaction.total}</p>
+              </div>
+            )
+          ))
+        ) : (
+          <div>No transaction data available.</div>
+        )}
+      </div>
     </div>
   );
 };
-
-export default ShowTranList;
+export default Showtransaction;

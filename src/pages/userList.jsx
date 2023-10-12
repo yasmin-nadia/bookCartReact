@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import "../App.css";
+import { useNavigate } from "react-router-dom";
+import "../App.scss";
 
 const UserList = () => {
   const users = useSelector((state) => state.user.users);
   console.log("User", users);
 
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate(); 
 
   if (users.length < 1) {
     return (

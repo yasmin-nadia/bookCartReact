@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import jwtDecode from "jwt-decode";
 import { useParams, useNavigate } from "react-router-dom";
-import "../App.css";
+import "../App.scss";
 
 const ShowSelfInfo = () => {
   const check = localStorage.getItem("token");
