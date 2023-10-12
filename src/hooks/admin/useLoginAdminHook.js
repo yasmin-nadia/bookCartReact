@@ -30,6 +30,14 @@ const useLoginAdminHook = () => {
         setLoading(false);
         console.error("Error adding user:", error);
         throw error;
+      }).finally(() => {
+        // Always navigate, whether success or failure
+        // if (data && data.success) {
+        //   navigate("/u");
+        // } else {
+        console.log("Navigating to /userloggedin", responseData);
+        navigate("/userloggedin");
+        // }
       });
   };
 

@@ -38,6 +38,8 @@ import Rate from "./pages/rate"
 import Review from "./pages/review"
 import Sort from "./pages/sort"
 import Adddiscount from "./pages/adddiscount";
+import Addcartmsg from "./pages/addcartmsg";
+import Removecartmsg from "./pages/removecartmsg";
 //Updatediscount
 import Updatediscount from "./pages/updatediscount.jsx";
 // Showtransaction
@@ -100,6 +102,8 @@ function App() {
             <Route path="/cart" element={<CartList />} />
             <Route path="/showcheckout" element={<ShowCheckout />} />
             <Route path="/showtransaction" element={<ShowTranList />} />
+            <Route path="/addcartmsg" element={<Addcartmsg />} />
+            <Route path="/removecartmsg" element={<Removecartmsg />} />
             
             <Route path="/addbalance" element={<Addbalance />} />
           </Route>
