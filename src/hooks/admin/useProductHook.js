@@ -4,15 +4,15 @@ import axiosInstance from "../../utils/axiosInstance";
 const useProduct = (productId) => {
   const [productData, setProductData] = useState();
   const [loading, setLoading] = useState(false);
-
+console.log("productId",productId)
   useEffect(() => {
     console.log("Inside hook");
     setLoading(true);
     axiosInstance
-      .get(`/getbook?_id=${productId}`)
+      .get(`/getbook?bookId=${productId}`)
       .then((res) => res.data)
       .then((data) => {
-        console.log("Fetched Nadia Data ", data.data[0]);
+        console.log("Fetched Nadia Data ", data);
         setProductData(data.data[0]);
         setLoading(false);
         console.log("Successfully recieved book:", data.data[0]);

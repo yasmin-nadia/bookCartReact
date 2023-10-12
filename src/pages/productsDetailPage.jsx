@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../redux/slices/cartslice";
 const ProductDetails = () => {
   const { productId } = useParams();
+  console.log(productId)
   const check = localStorage.getItem("token");
   const { createPost } = useAddtocartHook();
   const { createCheckout, loading_one, responseData } = useCheckoutHook();

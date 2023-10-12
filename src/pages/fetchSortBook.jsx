@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import useProductHook from "../hooks/common/userProductHook";
+import useSortProductHook from "../hooks/common/useSortProductHook";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-const FetchDemo = () => {
-  const { productData, loading } = useProductHook();
+const FetchSortBook = () => {
+  const { productData, loading } = useSortProductHook();
 
   useEffect(() => {
     console.log("From FetchDemo", productData);
@@ -37,4 +37,4 @@ const FetchDemo = () => {
   );
 };
 
-export default FetchDemo;
+export default FetchSortBook;

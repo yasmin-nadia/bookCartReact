@@ -260,3 +260,33 @@ h3 {
   display: block;
 }
 
+/* Center align the header-dropdown */
+.header-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the label */
+.header-link {
+  font-family: Arial, sans-serif; /* Add your preferred font family */
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-right: 10px;
+   /* Add some margin to separate the label from the dropdown */
+}
+.header-link-two {
+  font-family: Arial, sans-serif; /* Add your preferred font family */
+  font-size: 16px; /* Adjust the font size as needed */
+  margin-right: 10px;
+  color:black;
+   /* Add some margin to separate the label from the dropdown */
+}
+
+/* Style the select dropdown */
+.header-link select {
+  font-family: Arial, sans-serif; /* Add your preferred font family */
+  font-size: 16px; /* Adjust the font size as needed */
+  padding: 5px; /* Add padding to the select for better styling */
+  border: 1px solid black; /* Add a border for better separation */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}

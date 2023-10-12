@@ -1,15 +1,17 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Button from "../common/button";
+import React, { useState ,useEffect} from "react";
+import { Link ,useNavigate} from "react-router-dom";
+
+import useSortProductHook from "../../hooks/common/useSortProductHook";
 import "../../app.css";
 
 const Usernavbar = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
-
+  
+  
   const toggleLoginOptions = () => {
     setShowLoginOptions(!showLoginOptions);
   };
+  
   return (
     <div className="header-container">
       <img
@@ -43,7 +45,12 @@ const Usernavbar = () => {
           Search
         </Link>
       </div>
-     
+    
+      <div>
+        <Link to="/sort" className="header-link">
+          Sort
+        </Link>
+      </div>
       <div>
         <Link to="/showselfinfo" className="header-link">
           Account Info
@@ -54,6 +61,7 @@ const Usernavbar = () => {
           Logout
         </Link>
       </div>
+      
     </div>
   );
 };

@@ -37,6 +37,7 @@ import DeletePost from "./pages/deleteuser";
 import ShowSelfInfo from "./pages/showselfinfo";
 import Addbalance from "./pages/addbalance";
 import ShowCartList from "./pages/showallcart"
+import Sort from "./pages/sort"
 import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/lognslice";
 
@@ -75,7 +76,7 @@ function App() {
         <Routes>
           <Route path="/search" element={<DebounceDemo />} />
           <Route path="/" element={<FetchDemo />} />
-
+          <Route path="/sort" element={<Sort />} />
           <Route path="/userdetails" element={<Blog />} />
           <Route element={<Authenticateadmin />}>
             <Route path="/userlist" element={<UserList />} />
