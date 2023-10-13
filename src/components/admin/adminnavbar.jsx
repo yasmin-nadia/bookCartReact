@@ -3,10 +3,21 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../common/button";
 import "../../app.scss";
-
+import {
+  FaSearch,
+  FaShoppingCart,
+  FaUser,
+  FaPlus,
+  FaSort,
+  FaList,
+  FaSlidersH,
+  FaMoneyBill,
+  FaBriefcase,
+  FaFilter,
+} from "react-icons/fa";
 const Adminnavbar = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
-
+  const [activeLink, setActiveLink] = useState(""); // Track the active link
   const toggleLoginOptions = () => {
     setShowLoginOptions(!showLoginOptions);
   };
@@ -24,8 +35,11 @@ const Adminnavbar = () => {
         </Link>
       </div>
       <div className="header-dropdown">
-        <div className="header-link" onClick={toggleLoginOptions}>
-          Login &#9662;
+        <div
+          className={`header-link ${activeLink === "login" ? "active" : ""}`}
+          onClick={toggleLoginOptions}
+        >
+          <FaUser /> &#9662;
         </div>
         {showLoginOptions && (
           <div className="dropdown-content">
@@ -40,53 +54,52 @@ const Adminnavbar = () => {
       </div>
       <div>
         <Link to="/search" className="header-link">
-          Search
+          <FaSearch />
         </Link>
       </div>
       <div>
         <Link to="/createuser" className="header-link">
-          Add user
+          Add User
         </Link>
       </div>
       <div>
         <Link to="/createbook" className="header-link">
-          Add product
+          Add Product
         </Link>
       </div>
       <div>
         <Link to="/userlist" className="header-link">
-          Show user
+          Show User
         </Link>
       </div>
       <div>
         <Link to="/sort" className="header-link">
-          Sort
-        </Link>
-      </div>
-
-      <div>
-        <Link to="/logout/admin" className="header-link">
-          Logout
+          <FaSort /> Sort
         </Link>
       </div>
       <div>
         <Link to="/alltheusers" className="header-link">
-          Show users
+          Show Users
         </Link>
       </div>
       <div>
         <Link to="/updatediscount" className="header-link">
-          Update discount
+          Update Discount
         </Link>
       </div>
       <div>
         <Link to="/filter" className="header-link">
-          Filter
+          <FaFilter />
         </Link>
       </div>
       <div>
         <Link to="/showtransactionlist" className="header-link">
-          Transactions
+          <FaBriefcase />
+        </Link>
+      </div>
+      <div>
+        <Link to="/logout/admin" className="header-link">
+          Logout
         </Link>
       </div>
     </div>

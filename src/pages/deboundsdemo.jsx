@@ -51,15 +51,17 @@ const DebounceDemo = () => {
       </div>
 
       <h4>Showing the results: </h4>
-      <div>
-        {productData.length > 0
-          ? productData.map((book, index) => (
-              <div key={index}>
-                <h5>Title: {book.title}</h5>
-                <p>Description: {book.description}</p>
-              </div>
-            ))
-          : errorMsg && <h4>Error: {errorMsg}</h4>}
+      <div className="fetch-demo-container">
+        <div className="product-grid">
+          {productData.length > 0
+            ? productData.map((book, index) => (
+                <div className="product-item" key={index}>
+                  <h5>Title: {book.title}</h5>
+                  <p>Description: {book.description}</p>
+                </div>
+              ))
+            : errorMsg && <h4>Error: {errorMsg}</h4>}
+        </div>
       </div>
     </div>
   );

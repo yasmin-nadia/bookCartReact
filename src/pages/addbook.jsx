@@ -9,30 +9,30 @@ function Addbookform({ onAddBook, newBook, setNewBook }) {
       [name]: value,
     }));
   };
-  const handleImageInputChange = (event) => {
-    const { name, files } = event.target;
+  // const handleImageInputChange = (event) => {
+  //   const { name, files } = event.target;
 
-    const imageFiles = Array.from(files);
-    const imageUrls = [];
+  //   const imageFiles = Array.from(files);
+  //   const imageUrls = [];
 
-    imageFiles.forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const dataUrl = e.target.result;
-        imageUrls.push(dataUrl);
-        if (imageUrls.length === imageFiles.length) {
-          setNewBook((prevNewBook) => ({
-            ...prevNewBook,
-            [name]: imageUrls,
-          }));
-        }
-      };
+  //   imageFiles.forEach((file) => {
+  //     const reader = new FileReader();
+  //     reader.onload = (e) => {
+  //       const dataUrl = e.target.result;
+  //       imageUrls.push(dataUrl);
+  //       if (imageUrls.length === imageFiles.length) {
+  //         setNewBook((prevNewBook) => ({
+  //           ...prevNewBook,
+  //           [name]: imageUrls,
+  //         }));
+  //       }
+  //     };
 
-      reader.readAsDataURL(file);
-    });
+  //     reader.readAsDataURL(file);
+  //   });
 
-    console.log("imageUrls", imageUrls);
-  };
+  //   console.log("imageUrls", imageUrls);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -144,7 +144,7 @@ function Addbookform({ onAddBook, newBook, setNewBook }) {
             style={inputStyles}
           />
         </div>
-        <div style={inputContainerStyles}>
+        {/* <div style={inputContainerStyles}>
           <label style={labelStyles}>Image:</label>
           <input
             type="file"
@@ -153,7 +153,7 @@ function Addbookform({ onAddBook, newBook, setNewBook }) {
             onChange={handleImageInputChange}
             style={inputStyles}
           />
-        </div>
+        </div> */}
 
         <button type="button" onClick={handleSubmit} style={submitButtonStyles}>
           Add Book

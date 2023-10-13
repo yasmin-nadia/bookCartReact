@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "./button";
 import "../../app.scss";
-
+import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 const Header = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
+  const [activeLink, setActiveLink] = useState(""); // Track the active link
 
   const toggleLoginOptions = () => {
     setShowLoginOptions(!showLoginOptions);
@@ -24,8 +25,11 @@ const Header = () => {
         </Link>
       </div>
       <div className="header-dropdown">
-        <div className="header-link" onClick={toggleLoginOptions}>
-          Login &#9662;
+        <div
+          className={`header-link ${activeLink === "login" ? "active" : ""}`}
+          onClick={toggleLoginOptions}
+        >
+          <FaUser /> &#9662;
         </div>
         {showLoginOptions && (
           <div className="dropdown-content">

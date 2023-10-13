@@ -5,7 +5,7 @@ import jwtDecode from "jwt-decode";
 const FetchPost = () => {
   const { createPost, loading } = useProductPostHook();
   const check = localStorage.getItem("token");
-  
+
   const decodedToken = jwtDecode(check);
   console.log("decodedToken from add book", decodedToken);
   const {
@@ -49,6 +49,10 @@ const FetchPost = () => {
   };
 
   const handlerOnSubmit = (data) => {
+    data.price = parseInt(data.price, 10);
+    data.stock = parseInt(data.stock, 10);
+    data.pages = parseInt(data.pages, 10);
+    data.genre = data.genre.split(",").map((genre) => genre.trim());
     console.log("Form is submitted ", data);
     createPost(data);
   };
@@ -134,6 +138,7 @@ const FetchPost = () => {
             }}
             render={({ field }) => (
               <input
+                type="number"
                 placeholder="Enter price"
                 {...field}
                 style={{ border: errors.price ? "1px solid red" : "" }}
@@ -157,6 +162,7 @@ const FetchPost = () => {
             }}
             render={({ field }) => (
               <input
+                type="number"
                 placeholder="Enter stock"
                 {...field}
                 style={{ border: errors.stock ? "1px solid red" : "" }}
@@ -279,6 +285,7 @@ const FetchPost = () => {
             }}
             render={({ field }) => (
               <input
+                type="number"
                 placeholder="Enter pages"
                 {...field}
                 style={{ border: errors.pages ? "1px solid red" : "" }}
@@ -286,44 +293,6 @@ const FetchPost = () => {
             )}
           />
           {errors.pages && <h5>{errors.pages.message}</h5>}
-        </div>
-        <div style={inputContainerStyles}>
-          <label style={labelStyles}>Image:</label>
-          <Controller
-            name="image"
-            control={control}
-            rules={{
-              required: "Image is required",
-            }}
-            render={({ field }) => (
-              <>
-                <input
-                  type="file"
-                  {...field}
-                  style={{ display: "none" }}
-                  onChange={(e) => {
-                    field.onChange(e);
-                    handleImageInputChange(e);
-                  }}
-                />
-                <label
-                  htmlFor="image"
-                  style={{
-                    backgroundColor: "#734d26",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "4px",
-                    padding: "10px 20px",
-                    fontSize: "16px",
-                    cursor: "pointer",
-                    display: "inline-block",
-                  }}
-                >
-                  Upload Image
-                </label>
-              </>
-            )}
-          />
         </div>
 
         <button type="submit" style={submitButtonStyles}>

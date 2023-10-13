@@ -79,6 +79,7 @@ const ProductDetails = () => {
             <p>Price: ${productData.price}</p>
             <p>Stock: {productData.stock} in stock</p>
             <p>Genres: {productData.genre.join(", ")}</p>
+            <p>Rate: {productData.ratings.rate}</p>
             <div className="cart-button-element">
               <button className="add-to-cart-button" onClick={handleShowCart}>
                 Show Cart

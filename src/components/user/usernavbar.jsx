@@ -1,17 +1,24 @@
-import React, { useState ,useEffect} from "react";
-import { Link ,useNavigate} from "react-router-dom";
-
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import useSortProductHook from "../../hooks/common/useSortProductHook";
 import "../../app.scss";
 
 const Usernavbar = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);
-  
-  
+  const [activeLink, setActiveLink] = useState(""); // Track the active link
+
+  const navigate = useNavigate();
+
   const toggleLoginOptions = () => {
     setShowLoginOptions(!showLoginOptions);
   };
-  
+
+  // Function to set the active link
+  const handleLinkClick = (link) => {
+    setActiveLink(link);
+  };
+
   return (
     <div className="header-container">
       <img
@@ -21,13 +28,20 @@ const Usernavbar = () => {
         src="https://t3.ftcdn.net/jpg/00/59/63/30/240_F_59633034_GHlAAALTnXLdBeLPpEQWjzZhsad3QtNX.jpg"
       />
       <div>
-        <Link to="/" className="header-link">
+        <Link
+          to="/"
+          className={`header-link ${activeLink === "home" ? "active" : ""}`}
+          onClick={() => handleLinkClick("home")}
+        >
           HOME
         </Link>
       </div>
       <div className="header-dropdown">
-        <div className="header-link" onClick={toggleLoginOptions}>
-          Login &#9662;
+        <div
+          className={`header-link ${activeLink === "login" ? "active" : ""}`}
+          onClick={toggleLoginOptions}
+        >
+          <FaUser /> &#9662;
         </div>
         {showLoginOptions && (
           <div className="dropdown-content">
@@ -41,32 +55,44 @@ const Usernavbar = () => {
         )}
       </div>
       <div>
-        <Link to="/search" className="header-link">
-          Search
-        </Link>
-      </div>
-    
-      <div>
-        <Link to="/sort" className="header-link">
+        <Link
+          to="/sort"
+          className={`header-link ${activeLink === "sort" ? "active" : ""}`}
+          onClick={() => handleLinkClick("sort")}
+        >
           Sort
         </Link>
       </div>
       <div>
-        <Link to="/showselfinfo" className="header-link">
+        <Link
+          to="/showselfinfo"
+          className={`header-link ${activeLink === "account" ? "active" : ""}`}
+          onClick={() => handleLinkClick("account")}
+        >
           Account Info
         </Link>
       </div>
       <div>
-        <Link to="/filter" className="header-link">
-          Filter
+        <Link
+          to="/filter"
+          className={`header-link ${activeLink === "filter" ? "active" : ""}`}
+          onClick={() => handleLinkClick("filter")}
+        ></Link>
+      </div>
+      <div>
+        <Link
+          to="/cart"
+          className={`header-link ${activeLink === "cart" ? "active" : ""}`}
+          onClick={() => handleLinkClick("cart")}
+        >
+          <FaShoppingCart /> Cart
         </Link>
       </div>
       <div>
-        <Link to="/logout/user" className="header-link">
+        <Link to="/logout/admin" className="header-link">
           Logout
         </Link>
       </div>
-      
     </div>
   );
 };
