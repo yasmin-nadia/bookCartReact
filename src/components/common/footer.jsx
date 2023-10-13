@@ -6,7 +6,7 @@ const Footer = () => {
         padding: "10px",
         textAlign: "center",
         color: "white",
-        position: "fixed",
+        position: "relative",
         bottom: 0,
         left: 0,
         right: 0,

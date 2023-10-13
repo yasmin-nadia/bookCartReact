@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import useProductHook from "../hooks/common/userProductHook";
 import { useNavigate } from "react-router-dom";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
@@ -8,7 +8,7 @@ const FetchDemo = () => {
   const { productData, loading } = useProductHook();
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8;
+  const productsPerPage = 4;
 
   // Handle previous page
   const handlePreviousPage = () => {
