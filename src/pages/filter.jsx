@@ -5,8 +5,8 @@ import useFilterProductHook from "../hooks/common/useFilterProductHook";
 import "../App.scss";
 
 const Filter = () => {
-  const [price, setPriceField] = useState(); 
-  const [priceFlow, setPriceFlow] = useState(); 
+  const [price, setPriceField] = useState();
+  const [priceFlow, setPriceFlow] = useState();
   const navigate = useNavigate();
   const { productData, loading, createPost } = useFilterProductHook();
 
@@ -21,14 +21,11 @@ const Filter = () => {
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
     const discountData = {
-        price,  
-        priceFlow,   
-      };
-    createPost({discountData });
+      price,
+      priceFlow,
+    };
+    createPost({ discountData });
   };
-  
-
- 
 
   return (
     <div>
@@ -42,17 +39,27 @@ const Filter = () => {
             onChange={handleSortValueChange}
             placeholder="Enter price"
           />
-          <select className="header-link-two" value={priceFlow} onChange={handleSortFlowChange}>
+          <select
+            className="header-link-two"
+            value={priceFlow}
+            onChange={handleSortFlowChange}
+          >
             <option value="lower">Lower</option>
             <option value="upper">Upper</option>
           </select>
-          <button type="submit" className="header-link-two" onSubmit={handleUpdateSubmit}>Submit</button>
+          <button
+            type="submit"
+            className="header-link-two"
+            onSubmit={handleUpdateSubmit}
+          >
+            Submit
+          </button>
         </div>
       </form>
 
       <div className="show-product-detail">
         {loading === true && <h4>Loading...</h4>}
-        <h1>Product Details</h1>
+        {/* <h1>Product Details</h1> */}
         {productData && Array.isArray(productData) && productData.length > 0 ? (
           <div className="product-grid-two">
             {productData.map((product) => (

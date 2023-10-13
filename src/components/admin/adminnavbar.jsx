@@ -53,19 +53,18 @@ const Adminnavbar = () => {
           Add product
         </Link>
       </div>
-      
       <div>
         <Link to="/userlist" className="header-link">
           Show user
         </Link>
       </div>
       <div>
-     
         <Link to="/sort" className="header-link">
           Sort
         </Link>
-      </div>'
-      <div>'
+      </div>
+
+      <div>
         <Link to="/logout/admin" className="header-link">
           Logout
         </Link>
@@ -86,7 +85,7 @@ const Adminnavbar = () => {
         </Link>
       </div>
       <div>
-        <Link to="/showtransaction" className="header-link">
+        <Link to="/showtransactionlist" className="header-link">
           Transactions
         </Link>
       </div>

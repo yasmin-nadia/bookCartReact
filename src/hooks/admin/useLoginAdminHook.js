@@ -2,7 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axiosInstance from "../../utils/axiosInstance";
 import { login } from "../../redux/slices/lognslice";
+import { useNavigate } from "react-router-dom";
 const useLoginAdminHook = () => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const createLogin = (formData) => {
@@ -30,14 +32,9 @@ const useLoginAdminHook = () => {
         setLoading(false);
         console.error("Error adding user:", error);
         throw error;
-      }).finally(() => {
-        // Always navigate, whether success or failure
-        // if (data && data.success) {
-        //   navigate("/u");
-        // } else {
-        console.log("Navigating to /userloggedin", responseData);
+      })
+      .finally(() => {
         navigate("/userloggedin");
-        // }
       });
   };
 

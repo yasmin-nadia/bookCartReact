@@ -6,8 +6,8 @@ import Usernavbar from "./components/user/usernavbar";
 import Adminnavbar from "./components/admin/adminnavbar";
 import Logout from "./pages/logout";
 import Button from "./components/common/button";
-import Filter from "./pages/filter"
-
+import Filter from "./pages/filter";
+import Addusermsg from "./pages/addusermsg";
 import "./App.scss";
 import { AuthProvider } from "./pages/AuthContext";
 import { useAuth } from "./pages/AuthContext";
@@ -33,10 +33,10 @@ import UpdatePost from "./pages/updateuser";
 import DeletePost from "./pages/deleteuser";
 import ShowSelfInfo from "./pages/showselfinfo";
 import Addbalance from "./pages/addbalance";
-import ShowCartList from "./pages/showallcart"
-import Rate from "./pages/rate"
-import Review from "./pages/review"
-import Sort from "./pages/sort"
+import ShowCartList from "./pages/showallcart";
+import Rate from "./pages/rate";
+import Review from "./pages/review";
+import Sort from "./pages/sort";
 import Adddiscount from "./pages/adddiscount";
 import Addcartmsg from "./pages/addcartmsg";
 import Removecartmsg from "./pages/removecartmsg";
@@ -44,6 +44,9 @@ import Removecartmsg from "./pages/removecartmsg";
 import Updatediscount from "./pages/updatediscount.jsx";
 // Showtransaction
 import Showtransaction from "./pages/showtransaction.jsx";
+import Balancedatamsg from "./pages/balanceDatamsg";
+import Showselftransaction from "./pages/selfTran";
+import Addratemsg from "./pages/addratemsg";
 import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/lognslice";
 
@@ -95,17 +98,22 @@ function App() {
             <Route path="/deleteuser" element={<DeletePost />} />
             <Route path="adddiscount/:bookId" element={<Adddiscount />} />
             <Route path="updatediscount" element={<Updatediscount />} />
-    
-            <Route path="showtransaction" element={<Showtransaction />} />
+            <Route path="/showtransactionlist" element={<ShowTranList />} />
+
+            <Route path="/useraddmsg" element={<Addusermsg />} />
           </Route>
           <Route element={<Authenticate />}>
             <Route path="/cart" element={<CartList />} />
+            <Route path="/showtransaction" element={<Showselftransaction />} />
             <Route path="/showcheckout" element={<ShowCheckout />} />
-            <Route path="/showtransaction" element={<ShowTranList />} />
             <Route path="/addcartmsg" element={<Addcartmsg />} />
             <Route path="/removecartmsg" element={<Removecartmsg />} />
-            
             <Route path="/addbalance" element={<Addbalance />} />
+            //Balancedatamsg
+            <Route path="/addbalancemsg" element={<Balancedatamsg />} />
+            <Route path="/showselfinfo" element={<ShowSelfInfo />} />
+            <Route path="/showselfcart" element={<ShowCartList />} />
+            <Route path="/addratemsg" element={<Addratemsg />} />
           </Route>
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/rate/:bookId" element={<Rate />} />
@@ -116,10 +124,6 @@ function App() {
           <Route path="/logout/user" element={<Logout />} />
           <Route path="/login/admin" element={<LoginAdmin />} />
           <Route path="/logout/admin" element={<Logout />} />
-
-          <Route path="/showselfinfo" element={<ShowSelfInfo />} />
-          <Route path="/showselfcart" element={<ShowCartList />} />
-          
         </Routes>
 
         {/* </AuthProvider> */}

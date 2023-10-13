@@ -3,12 +3,14 @@ const Footer = () => {
     <div
       style={{
         backgroundColor: "#604020",
-        padding: "10px 10px 10px 10px",
+        padding: "10px",
         textAlign: "center",
         color: "white",
+        position: "fixed",
         bottom: 0,
+        left: 0,
+        right: 0,
         width: "100%",
-        position: "relative",
       }}
     >
       &copy; All Rights Reserved.
