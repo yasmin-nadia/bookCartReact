@@ -47,6 +47,7 @@ import Showtransaction from "./pages/showtransaction.jsx";
 import Balancedatamsg from "./pages/balanceDatamsg";
 import Showselftransaction from "./pages/selfTran";
 import Addratemsg from "./pages/addratemsg";
+import PasswordReset from "./pages/passwordreset";
 import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/lognslice";
 
@@ -115,6 +116,11 @@ function App() {
             <Route path="/showselfcart" element={<ShowCartList />} />
             <Route path="/addratemsg" element={<Addratemsg />} />
           </Route>
+          <Route path="/forgetpassword" />
+          <Route
+            path="/reset-password/:token/:userId"
+            element={<PasswordReset />}
+          />
           <Route path="/products/:productId" element={<ProductDetails />} />
           <Route path="/rate/:bookId" element={<Rate />} />
           <Route path="/review/:bookId" element={<Review />} />
@@ -127,7 +133,7 @@ function App() {
 
         {/* </AuthProvider> */}
       </BrowserRouter>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

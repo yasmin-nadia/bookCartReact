@@ -1,9 +1,10 @@
 import react, { useEffect, useState } from "react";
-import useLoginHook from "../hooks/admin/useLoginHook";
 import { useForm, Controller } from "react-hook-form";
-const Login = () => {
-  const { createLogin, loading, forgetPassword } = useLoginHook();
+import useLoginHook from "../hooks/admin/useLoginHook";
+import { useParams, useNavigate } from "react-router-dom";
 
+const PasswordReset = () => {
+  const { token, userId } = useParams();
   const {
     handleSubmit,
     control,
@@ -11,6 +12,22 @@ const Login = () => {
     getValues,
     watch,
   } = useForm();
+  const [newPassword, setNewPassword] = useState();
+  const [oldPassword, setOldPassword] = useState();
+  const { onResetPassword } = useLoginHook(
+    token,
+    userId,
+    newPassword,
+    oldPassword
+  );
+
+  const onSubmit_one = (data) => {
+    console.log("pass data", data);
+    const { password, confirmPassword } = data;
+    setNewPassword(password);
+    setOldPassword(confirmPassword);
+    onResetPassword();
+  };
   const formStyles = {
     maxWidth: "400px",
     margin: "0 auto",
@@ -25,6 +42,7 @@ const Login = () => {
     marginBottom: "5px",
     fontWeight: "bold",
   };
+
   const inputStyles = {
     width: "100%",
     padding: "10px",
@@ -34,6 +52,7 @@ const Login = () => {
     boxSizing: "border-box",
     marginBottom: "5px",
   };
+
   const submitButtonStyles = {
     backgroundColor: "#734d26",
     color: "white",
@@ -43,44 +62,13 @@ const Login = () => {
     fontSize: "16px",
     cursor: "pointer",
   };
-  const [email, setEmail] = useState("");
-
-  // Function to handle email input change
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
 
   return (
     <div>
-      <h1>Please Login here</h1>
-      {loading === true && <h4>Loading...</h4>}
-      <form style={formStyles} onSubmit={handleSubmit(createLogin)}>
+      <h1>Reset Password</h1>
+      <form style={formStyles} onSubmit={handleSubmit(onSubmit_one)}>
         <div style={inputContainerStyles}>
-          <label style={labelStyles}>Email:</label>
-          <Controller
-            name="email"
-            control={control}
-            rules={{
-              required: "email is required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Invalid email address",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                placeholder="Enter email"
-                {...field}
-                style={{ border: errors.email ? "1px solid red" : "" }}
-                onChange={handleEmailChange}
-              />
-            )}
-          />
-          {errors.email && <h5>{errors.email.message}</h5>}
-        </div>
-
-        <div style={inputContainerStyles}>
-          <label style={labelStyles}>Password:</label>
+          <label style={labelStyles}>New Password:</label>
           <Controller
             name="password"
             control={control}
@@ -101,9 +89,9 @@ const Login = () => {
                   digitRegex.test(value) &&
                   value.length >= 8
                 ) {
-                  return true;
+                  return true; // Password meets the criteria
                 } else {
-                  return "Password must meet the criteria";
+                  return "Password must meet the criteria"; // Validation error message
                 }
               },
             }}
@@ -118,19 +106,36 @@ const Login = () => {
           />
           {errors.password && <h5>{errors.password.message}</h5>}
         </div>
+        <div style={inputContainerStyles}>
+          <label style={labelStyles}>Confirm password:</label>
+          <Controller
+            name="confirmPassword"
+            control={control}
+            rules={{
+              required: "Confirm password is required",
+              validate: (value) =>
+                value == watch("password") || "Both passwords doesn't match",
+            }}
+            render={({ field }) => (
+              <input
+                placeholder="Confirm your password"
+                type="password"
+                {...field}
+                style={{
+                  border: errors.confirmPassword ? "1px solid red" : "",
+                }}
+              />
+            )}
+          />
+          {errors.confirmPassword && <h5>{errors.confirmPassword.message}</h5>}
+        </div>
 
         <button type="submit" style={submitButtonStyles}>
-          Login
+          Reset Password
         </button>
       </form>
-      <button
-        type="button"
-        onClick={() => forgetPassword({ email: email })}
-        style={submitButtonStyles}
-      >
-        Forgot Password?
-      </button>
     </div>
   );
 };
-export default Login;
+
+export default PasswordReset;
