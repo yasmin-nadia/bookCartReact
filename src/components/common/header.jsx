@@ -89,6 +89,16 @@ const Header = () => {
           Filter
         </Link>
       </div>
+      <div>
+        <Link to="/fileupload" className="header-link">
+          Fileupload
+        </Link>
+      </div>
+      <div>
+        <Link to="/createbook" className="header-link">
+          Add Product
+        </Link>
+      </div>
     </div>
   );
 };

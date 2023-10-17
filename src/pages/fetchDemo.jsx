@@ -41,10 +41,10 @@ const FetchDemo = () => {
           <div className="product-item" key={product._id}>
             <h5>{product.title}</h5>
             <p>Author: {product.author}</p>
-            <img
+            {/* <img
               src={product.image[0]}
               style={{ width: "200px", height: "200px" }}
-            />
+            /> */}
             <button
               className="add-to-cart-button"
               onClick={() => navigate(`/products/${product._id}`)}

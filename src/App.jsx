@@ -48,6 +48,8 @@ import Balancedatamsg from "./pages/balanceDatamsg";
 import Showselftransaction from "./pages/selfTran";
 import Addratemsg from "./pages/addratemsg";
 import PasswordReset from "./pages/passwordreset";
+import Fileupload from "./pages/fileupload";
+import Getfile from "./pages/showfile";
 import { useDispatch } from "react-redux";
 import { login } from "./redux/slices/lognslice";
 
@@ -88,11 +90,13 @@ function App() {
           <Route path="/" element={<FetchDemo />} />
           <Route path="/sort" element={<Sort />} />
           <Route path="/filter" element={<Filter />} />
+          <Route path="/createuser" element={<FetchUserPost />} />
+          <Route path="/createbook" element={<FetchPost />} />
           <Route element={<Authenticateadmin />}>
             <Route path="/userlist" element={<UserList />} />
-            <Route path="/createbook" element={<FetchPost />} />
+
             <Route path="/updatebook/:title" element={<FetchUpdate />} />
-            <Route path="/createuser" element={<FetchUserPost />} />
+
             <Route path="/updateuser" element={<UpdatePost />} />
             <Route path="/deletebook/:title" element={<FetchDelete />} />
             <Route path="/alltheusers" element={<FetchUsers />} />
@@ -129,6 +133,8 @@ function App() {
           <Route path="/logout/user" element={<Logout />} />
           <Route path="/login/admin" element={<LoginAdmin />} />
           <Route path="/logout/admin" element={<Logout />} />
+          <Route path="/fileupload" element={<Fileupload />} />
+          <Route path="/get/:filepath" element={<Getfile />} />
         </Routes>
 
         {/* </AuthProvider> */}
