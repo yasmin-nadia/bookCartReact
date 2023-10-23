@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import useSortProductHook from "../../hooks/common/useSortProductHook";
-import "../../app.scss";
+import "../../App.scss";
 
 const Usernavbar = () => {
   const [showLoginOptions, setShowLoginOptions] = useState(false);

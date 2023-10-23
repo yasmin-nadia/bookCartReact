@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Button from "../common/button";
-import "../../app.scss";
+import "../../App.scss";
 import {
   FaSearch,
   FaShoppingCart,

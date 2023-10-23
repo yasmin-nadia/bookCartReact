@@ -382,7 +382,7 @@ const FetchPost = () => {
         <div className="file-upload-container">
           <h1 className="file-upload-title">File Upload</h1>
           <Controller
-            name="file"
+            name="image"
             control={control}
             render={({ field }) => (
               <>
