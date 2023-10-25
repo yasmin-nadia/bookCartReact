@@ -2,7 +2,7 @@ import axios from "axios";
 const token = localStorage.getItem("token");
 console.log("UseDeleteHook token", token);
 const axiosInstance = axios.create({
-  baseURL: "http://127.0.0.1:8001/mybooks",
+  baseURL: "http://localhost:8000/mybooks",
   headers: {
     "Content-Type": "application/json",
 
